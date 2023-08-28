@@ -2447,7 +2447,7 @@ header.header {
   font-size: 13px;
 }
 body {
-  background: url("/images/background.jpg");
+  background: url("/images/background.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
