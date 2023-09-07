@@ -20,13 +20,13 @@
 
     <meta name="description" content="参数传递与返回值">
 <meta property="og:type" content="article">
-<meta property="og:title" content="参数传递与返回值">
+<meta property="og:title" content="4-参数传递与返回值">
 <meta property="og:url" content="http://example.com/yw/3498424137/index.html">
 <meta property="og:site_name" content="yw__y">
 <meta property="og:description" content="参数传递与返回值">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-05T14:22:33.000Z">
-<meta property="article:modified_time" content="2023-09-05T14:36:30.700Z">
+<meta property="article:modified_time" content="2023-09-06T08:04:48.516Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
 
@@ -35,10 +35,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/yw/3498424137/","path":"yw/3498424137/","title":"参数传递与返回值"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/yw/3498424137/","path":"yw/3498424137/","title":"4-参数传递与返回值"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>参数传递与返回值 | yw__y</title>
+<title>4-参数传递与返回值 | yw__y</title>
   
 
 
@@ -110,7 +110,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%8A%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%94%BE%E5%9C%A8private%E9%87%8C"><span class="nav-number">1.</span> <span class="nav-text">把构造函数放在private里</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%8A%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%94%BE%E5%9C%A8private%E9%87%8C"><span class="nav-number">1.</span> <span class="nav-text">把构造函数放在private里</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92-pass-by-value-vs-pass-by-reference-to-const"><span class="nav-number">2.</span> <span class="nav-text">参数传递 pass by value vs pass by reference (to const)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#friend%EF%BC%88%E5%8F%8B%E5%85%83%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">friend（友元）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%90%8Cclass%E7%9A%84%E5%90%84%E4%B8%AAobjects%E4%BA%92%E4%B8%BAfriends%EF%BC%88%E5%8F%8B%E5%85%83%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">相同class的各个objects互为friends（友元）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE%E4%B8%80%E4%B8%8B"><span class="nav-number">4.</span> <span class="nav-text">回顾一下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#class-body%E5%A4%96%E7%9A%84%E5%90%84%E7%A7%8D%E5%AE%9A%E4%B9%89%EF%BC%88definitions%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">class body外的各种定义（definitions）</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -125,7 +125,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,12 +174,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="参数传递与返回值 | yw__y">
+      <meta itemprop="name" content="4-参数传递与返回值 | yw__y">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          参数传递与返回值
+          4-参数传递与返回值
         </h1>
 
         <div class="post-meta-container">
@@ -189,9 +189,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-09-05 22:22:33 / 修改时间：22:36:30" itemprop="dateCreated datePublished" datetime="2023-09-05T22:22:33+08:00">2023-09-05</time>
+      <time title="创建时间：2023-09-05 22:22:33" itemprop="dateCreated datePublished" datetime="2023-09-05T22:22:33+08:00">2023-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-06 16:04:48" itemprop="dateModified" datetime="2023-09-06T16:04:48+08:00">2023-09-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -223,8 +229,45 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A::<span class="built_in">getInstance</span>().<span class="built_in">setup</span>();</span><br></pre></td></tr></table></figure>
 
 <p>常量成员函数</p>
+<p>函数不会改变数据的，加上const</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="type">double</span> r=<span class="number">0</span>, <span class="type">double</span> i=<span class="number">0</span>)</span><br><span class="line">        :<span class="built_in">re</span>(r),<span class="built_in">im</span>(i)</span><br><span class="line">        &#123;&#125;</span><br><span class="line">    complex&amp; <span class="keyword">operator</span> += (<span class="type">const</span> complex&amp;);</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">real</span> <span class="params">()</span> <span class="type">const</span> </span>&#123;<span class="keyword">return</span> re;&#125;</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">imag</span><span class="params">()</span> <span class="type">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">double</span> re, im;</span><br><span class="line">    <span class="keyword">friend</span> complex&amp; __doapl (complex*,<span class="type">const</span> cpmplex&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<p>使用者所写</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="type">const</span> complex <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;<span class="comment">//表示这个复数不可以被修改</span></span><br><span class="line">    cout&lt;&lt;c1.<span class="built_in">real</span>();</span><br><span class="line">    cout&lt;&lt;c1.<span class="built_in">imag</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果定义函数时没有写const，在调用时编译器就会 报错</p>
+<h1 id="参数传递-pass-by-value-vs-pass-by-reference-to-const"><a href="#参数传递-pass-by-value-vs-pass-by-reference-to-const" class="headerlink" title="参数传递 pass by value vs pass by reference (to const)"></a>参数传递 pass by value vs pass by reference (to const)</h1><p>传内容 ，和传引用的区别</p>
+<p>传内容整个的全都传过去，传引用只传四个字节的指针</p>
+<p>对于内容较长的参数，传引用比传内容快</p>
+<p>为了满足传递引用，且不修改引用的内容，有时在传递引用时加上const</p>
+<p>若是函数修改参数，编译器会报错</p>
+<p>下面是例子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="type">double</span> r=<span class="number">0</span>,<span class="type">double</span> i=<span class="number">0</span>)</span><br><span class="line">        :<span class="built_in">re</span>(r),<span class="built_in">im</span>(i)</span><br><span class="line">        &#123;&#125;</span><br><span class="line">    complex&amp; <span class="keyword">operator</span> +=(<span class="type">const</span> complex&amp;);</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">real</span> <span class="params">()</span><span class="type">const</span> </span>&#123;<span class="keyword">return</span> re;&#125;</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">imag</span> <span class="params">()</span><span class="type">const</span> </span>&#123;<span class="keyword">return</span> im;&#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">double</span> re,im;</span><br><span class="line">    <span class="keyword">friend</span> complex&amp; __doapl (complex*,<span class="type">const</span> complex&amp;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ostream&amp;</span><br><span class="line">    <span class="keyword">operator</span> &lt;&lt;(ostream&amp; os,<span class="type">const</span> complex&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span>&lt;&lt;<span class="built_in">real</span>(x)&lt;&lt;<span class="string">&#x27;,&#x27;</span></span><br><span class="line">    &lt;&lt;<span class="built_in">imag</span>(x)&lt;&lt;<span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样返回值传递也有两种：return by value vs return by reference(to const)</p>
+<h1 id="friend（友元）"><a href="#friend（友元）" class="headerlink" title="friend（友元）"></a>friend（友元）</h1><p> 上面的friend函数定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex&amp;</span><br><span class="line">    __doapl (complex* ths,<span class="type">const</span> complex&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    ths-&gt;re+=r.re;</span><br><span class="line">    ths-&gt;im+=r.im;</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="相同class的各个objects互为friends（友元）"><a href="#相同class的各个objects互为friends（友元）" class="headerlink" title="相同class的各个objects互为friends（友元）"></a>相同class的各个objects互为friends（友元）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">complex</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">complex</span> (<span class="type">double</span> r=<span class="number">0</span>,<span class="type">double</span> i=<span class="number">0</span>)</span><br><span class="line">        :<span class="built_in">re</span>(r),<span class="built_in">im</span>(i)</span><br><span class="line">        &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(<span class="type">const</span> complex&amp; param)</span></span></span><br><span class="line"><span class="function">    </span>&#123;<span class="keyword">return</span> param.re+param.im;&#125;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">double</span> re,im;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">    complex c2;</span><br><span class="line">    </span><br><span class="line">    c2.<span class="built_in">func</span>(c1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="回顾一下"><a href="#回顾一下" class="headerlink" title="回顾一下"></a>回顾一下</h1><p>在写一个类时会注意哪些地方</p>
+<ol>
+<li>数据放在private里</li>
+<li>参数尽可能是以refrence来传，看情况加const</li>
+<li>返回值也尽量以refrence来传，不行的情况不用（下面说）</li>
+<li>在类的body里要加const的就应该加上，不然使用者使用时会很麻烦，他会埋怨你</li>
+<li>构造函数有一个特殊的语法是initialization list（参数初始化表）</li>
+</ol>
+<h1 id="class-body外的各种定义（definitions）"><a href="#class-body外的各种定义（definitions）" class="headerlink" title="class body外的各种定义（definitions）"></a>class body外的各种定义（definitions）</h1><p>什么情况下可以pass by reference</p>
+<p>什么情况下可以return by  reference</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex&amp;</span><br><span class="line">    __doapl (complex* ths,<span class="type">const</span> complex&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    ths-&gt;re+=r.re;<span class="comment">//第一参数会被修改，第二参数不会被修改</span></span><br><span class="line">    ths-&gt;im+=r.im;</span><br><span class="line">    <span class="keyword">return</span> *ths;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> complex&amp;</span><br><span class="line">complex::<span class="keyword">operator</span> += (<span class="type">const</span> complex&amp; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> __dopal (<span class="keyword">this</span> ,r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先说不能return by refrence的情况</p>
+<p>当使用的函数创建了一个新的内容，这时返回一个新内容的引用，在函数结束时，这个新内容就死亡了，这时引用里的内容也就死亡了，在去看时看到的不是想要的东西。</p>
 
     </div>
 
@@ -242,7 +285,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/yw/3498424137/" title="参数传递与返回值">http://example.com/yw/3498424137/</a>
+      <a href="http://example.com/yw/3498424137/" title="4-参数传递与返回值">http://example.com/yw/3498424137/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -255,11 +298,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/yw/4204290943/" rel="prev" title="构造函数">
-                  <i class="fa fa-chevron-left"></i> 构造函数
+                <a href="/yw/4204290943/" rel="prev" title="3-构造函数">
+                  <i class="fa fa-chevron-left"></i> 3-构造函数
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/yw/3653048627/" rel="next" title="5-操作符重载与临时对象">
+                  5-操作符重载与临时对象 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
