@@ -16,26 +16,26 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="5-操作符重载与临时对象">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-操作符重载与临时对象">
-<meta property="og:url" content="http://example.com/yw/3653048627/index.html">
+<meta property="og:url" content="http://yw-by.github.io/yw/3653048627/index.html">
 <meta property="og:site_name" content="yw__y">
 <meta property="og:description" content="5-操作符重载与临时对象">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T07:48:43.000Z">
-<meta property="article:modified_time" content="2023-09-07T13:08:44.445Z">
+<meta property="article:modified_time" content="2023-09-09T01:47:02.347Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/yw/3653048627/">
+<link rel="canonical" href="http://yw-by.github.io/yw/3653048627/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/yw/3653048627/","path":"yw/3653048627/","title":"5-操作符重载与临时对象"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/3653048627/","path":"yw/3653048627/","title":"5-操作符重载与临时对象"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>5-操作符重载与临时对象 | yw__y</title>
@@ -161,7 +161,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/yw/3653048627/">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/3653048627/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -197,7 +197,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-07 21:08:44" itemprop="dateModified" datetime="2023-09-07T21:08:44+08:00">2023-09-07</time>
+      <time title="修改时间：2023-09-09 09:47:02" itemprop="dateModified" datetime="2023-09-09T09:47:02+08:00">2023-09-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,13 +242,13 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">cout&lt;&lt;<span class="built_in">imag</span>(c1);</span><br><span class="line">cout&lt;&lt;<span class="built_in">real</span>(c1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="operator-overloading-操作符重载之二，非成员函数-无this"><a href="#operator-overloading-操作符重载之二，非成员函数-无this" class="headerlink" title="operator overloading (操作符重载之二，非成员函数) 无this"></a>operator overloading (操作符重载之二，非成员函数) 无this</h1><p> 为了应对client（客户）的三种可能用法，这里写了三个函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex</span><br><span class="line">    <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x,<span class="type">const</span> complex&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (<span class="built_in">real</span> (x) + <span class="built_in">real</span> (y),</span><br><span class="line">                  <span class="built_in">imag</span> (x) + <span class="built_in">imag</span> (y) );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> complex</span><br><span class="line">    <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x,<span class="type">double</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (<span class="built_in">real</span> (x) + y,<span class="built_in">imag</span> (x) );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> complex</span><br><span class="line">    <span class="keyword">operator</span> + (<span class="type">double</span> x,complex&amp; y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (x + <span class="built_in">real</span>(y) ,<span class="built_in">imag</span> (y) );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> complex</span><br><span class="line">    <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x,<span class="type">const</span> complex&amp; y)<span class="comment">//复数加复数</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (<span class="built_in">real</span> (x) + <span class="built_in">real</span> (y),</span><br><span class="line">                  <span class="built_in">imag</span> (x) + <span class="built_in">imag</span> (y) );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> complex</span><br><span class="line">    <span class="keyword">operator</span> + (<span class="type">const</span> complex&amp; x,<span class="type">double</span> y)<span class="comment">//复数加实数</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (<span class="built_in">real</span> (x) + y,<span class="built_in">imag</span> (x) );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">inline</span> complex</span><br><span class="line">    <span class="keyword">operator</span> + (<span class="type">double</span> x,complex&amp; y)<span class="comment">//实数加复数</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">complex</span> (x + <span class="built_in">real</span>(y) ,<span class="built_in">imag</span> (y) );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//当然可以加虚数，这里不写</span></span><br></pre></td></tr></table></figure>
 
 <p>下面对应三种用法</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">complex c2;</span><br><span class="line">c2=c1+c2;</span><br><span class="line">c2=c1+<span class="number">5</span>;</span><br><span class="line">c2=<span class="number">7</span>+c1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="temp-object（临时对象）-typename"><a href="#temp-object（临时对象）-typename" class="headerlink" title="temp object（临时对象） typename();"></a>temp object（临时对象） typename();</h2><p>上面三个加函数</p>
-<p>这里绝对不能return by reference,</p>
+<p>绝对不能return by reference,</p>
 <p>因为，他们返回的必定是一个local object.</p>
 <p>和之前return一样，返回的东西是一个新创建的，函数结束时就会死亡，那么传递的引用就是错误的东西。</p>
 <p>typename();表示创建一个临时对象，这个对象生命很短且没有名字，使用方法就是一个数据类型比如int后面跟一个小括号，括号里放给对象的内容。</p>
@@ -264,7 +264,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function">complex <span class="title">c1</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">conj</span>(c1);=&gt;(<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">	cout&lt;&lt;c1&lt;&lt;<span class="built_in">conj</span>(c1);=&gt;(<span class="number">2</span>,<span class="number">1</span>)(<span class="number">2</span>,<span class="number">-1</span>)<span class="comment">//合法，输出c1和它的共轭复数</span></span><br><span class="line">&#125;<span class="comment">//先执行输出c1，结果还要能接收&lt;&lt;，所以cout&lt;&lt;c1的返回值类型应为ostream</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="整理"><a href="#整理" class="headerlink" title="整理"></a>整理</h1><ol>
-<li>构造函数用initaliazation list初值列（参数初始化表</li>
+<li>构造函数用initaliazation list初值列（参数初始化表）</li>
 <li>函数该不该加const</li>
 <li>参数的传递尽量考虑pass by reference</li>
 <li>数据要尽可能的放在private里，函数绝大部分要放在public里</li>
@@ -287,7 +287,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/yw/3653048627/" title="5-操作符重载与临时对象">http://example.com/yw/3653048627/</a>
+      <a href="http://yw-by.github.io/yw/3653048627/" title="5-操作符重载与临时对象">http://yw-by.github.io/yw/3653048627/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
