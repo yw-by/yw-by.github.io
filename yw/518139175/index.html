@@ -26,7 +26,7 @@
 <meta property="og:description" content="7-三大函数：拷贝构造、拷贝复制、析构">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-08T11:30:48.000Z">
-<meta property="article:modified_time" content="2023-09-09T01:59:59.488Z">
+<meta property="article:modified_time" content="2023-09-09T11:08:39.659Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
 
@@ -197,7 +197,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-09 09:59:59" itemprop="dateModified" datetime="2023-09-09T09:59:59+08:00">2023-09-09</time>
+      <time title="修改时间：2023-09-09 19:08:39" itemprop="dateModified" datetime="2023-09-09T19:08:39+08:00">2023-09-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -236,7 +236,7 @@
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用例子</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">String <span class="title">s1</span><span class="params">(<span class="string">&quot;Hello&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">s2</span><span class="params">(s1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="copy-assignment-operator（拷贝赋值函数）"><a href="#copy-assignment-operator（拷贝赋值函数）" class="headerlink" title="copy assignment operator（拷贝赋值函数）"></a>copy assignment operator（拷贝赋值函数）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> </span><br><span class="line">String&amp; String::<span class="keyword">operator</span>=(<span class="type">const</span> String&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>==&amp;str)<span class="comment">//检测自我赋值(self assignment)</span></span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] m_data;</span><br><span class="line">    m_data=<span class="keyword">new</span> <span class="type">char</span>[<span class="built_in">strlen</span>(str.m_data)+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_data,str.m_data);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="copy-assignment-operator（拷贝赋值函数）"><a href="#copy-assignment-operator（拷贝赋值函数）" class="headerlink" title="copy assignment operator（拷贝赋值函数）"></a>copy assignment operator（拷贝赋值函数）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> </span><br><span class="line">String&amp; String::<span class="keyword">operator</span>=(<span class="type">const</span> String&amp; str)<span class="comment">//这里是pass by reference</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>==&amp;str)<span class="comment">//检测自我赋值(self assignment)，这里表示取str地址</span></span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] m_data;</span><br><span class="line">    m_data=<span class="keyword">new</span> <span class="type">char</span>[<span class="built_in">strlen</span>(str.m_data)+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_data,str.m_data);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个检测自我赋值很重要（我觉得），虽然用到它需要你忘记了已经把两个指针指向了同一地址(这是可能发生的)</p>
 <p>可以想一下，如果真的传入的参数所指向的地址和要被赋值的指针指向的地址相同，最开始为了防止内存泄露的delete一执行就全删掉了</p>
