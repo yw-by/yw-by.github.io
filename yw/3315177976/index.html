@@ -25,12 +25,14 @@
 <meta property="og:site_name" content="yw__y">
 <meta property="og:description" content="2、STL体系结构基础介绍">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yw-by.github.io/yw/undefined/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3315177976/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3315177976/2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3315177976/3.png">
 <meta property="article:published_time" content="2023-09-17T07:57:11.000Z">
-<meta property="article:modified_time" content="2023-09-17T13:42:24.063Z">
+<meta property="article:modified_time" content="2023-09-19T14:25:39.866Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yw-by.github.io/yw/undefined/1.png">
+<meta name="twitter:image" content="http://yw-by.github.io/yw/3315177976/1.png">
 
 
 <link rel="canonical" href="http://yw-by.github.io/yw/3315177976/">
@@ -112,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL%E5%85%AD%E5%A4%A7%E9%83%A8%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">STL六大部件</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STL%E5%85%AD%E5%A4%A7%E9%83%A8%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">STL六大部件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">复杂度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%9C%E5%89%8D%E9%97%AD%E5%90%8E%E5%BC%80%E2%80%9D%E5%8C%BA%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">“前闭后开”区间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#range-based-for-statement-since-C-11"><span class="nav-number">4.</span> <span class="nav-text">range-based for statement(since C++11)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#auto-keyword%EF%BC%88since-C-11%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">auto keyword（since C++11）</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -191,9 +193,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-09-17 15:57:11 / 修改时间：21:42:24" itemprop="dateCreated datePublished" datetime="2023-09-17T15:57:11+08:00">2023-09-17</time>
+      <time title="创建时间：2023-09-17 15:57:11" itemprop="dateCreated datePublished" datetime="2023-09-17T15:57:11+08:00">2023-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-19 22:25:39" itemprop="dateModified" datetime="2023-09-19T22:25:39+08:00">2023-09-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -226,9 +234,31 @@
 <li>适配器（Adapters）：可以将容器、仿函数、迭代器做一些转换</li>
 <li>仿函数（Functors）：作用像函数</li>
 </ul>
-<img src="/yw/undefined/1.png" class>
+<img src="/yw/3315177976/1.png" class>
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> ia[<span class="number">6</span>]=&#123;<span class="number">27</span>,<span class="number">210</span>,<span class="number">12</span>,<span class="number">47</span>,<span class="number">109</span>,<span class="number">83</span>&#125;;</span><br><span class="line">    vector&lt;<span class="type">int</span>,allocator&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">vi</span>(ia,ia+<span class="number">6</span>);<span class="comment">//vector是容器，allocator是适配器（如果不写，编译器会写一个默认的），正常第二个大多数人不会这样写，vector是一个模板需要指定类型，allocator也是，所以后面尖括号要写类型</span></span><br><span class="line">    <span class="comment">//vector后面个别了一个变量（对象），初始方法有很多（要查手册），现在vector里有六个元素了</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in">count_if</span>(vi.<span class="built_in">begin</span>(),vi.<span class="built_in">end</span>(),<span class="comment">//算法count_if作用是给他if，判断有几个元素符合条件</span></span><br><span class="line">                   						<span class="comment">//基本所有的容器都有begin和end函数，获得头和尾泛化指针</span></span><br><span class="line">                 <span class="built_in">noti</span>(<span class="built_in">bind2nd</span>(<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;(),<span class="number">40</span>)));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> ia[<span class="number">6</span>]=&#123;<span class="number">27</span>,<span class="number">210</span>,<span class="number">12</span>,<span class="number">47</span>,<span class="number">109</span>,<span class="number">83</span>&#125;;</span><br><span class="line">    vector&lt;<span class="type">int</span>,allocator&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">vi</span>(ia,ia+<span class="number">6</span>);<span class="comment">//vector是容器，allocator是适配器（如果不写，编译器会写一个默认的），正常第二个大多数人不会这样写，vector是一个模板需要指定类型，allocator也是，所以后面尖括号要写类型</span></span><br><span class="line">    <span class="comment">//vector后面跟了一个变量（对象），初始方法有很多（要查手册），现在vector里有六个元素了</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in">count_if</span>(vi.<span class="built_in">begin</span>(),vi.<span class="built_in">end</span>(),<span class="comment">//algorithm（算法）count_if作用是给他一个条件，判断有几个元素符合条件</span></span><br><span class="line">                   					<span class="comment">//基本所有的元素都有begin和end函数，获得头和尾泛化指针iterator</span></span><br><span class="line">                 <span class="built_in">noti</span>(<span class="built_in">bind2nd</span>(<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;(),<span class="number">40</span>)));<span class="comment">//adapter（适配器） bind2nd绑定第二参数，仿函数less&lt;int&gt;判断两个整数类型的数据是否满足小于的关系，满足返回ture，反之返回flash，经过adapter（适配器）之后变为比较和40的大小。</span></span><br><span class="line">    <span class="comment">//在这些之前又加了not1（not one）否定的意思</span></span><br><span class="line">    <span class="comment">//所以整个语句的判断的条件是大于等于40</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="comment">//这是侯捷老师写的例子，将六种工具都用到了</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><p>和数据结构里说的是一个，老师说后面会细说</p>
+<img src="/yw/3315177976/2.png" class>
+
+<h1 id="“前闭后开”区间"><a href="#“前闭后开”区间" class="headerlink" title="“前闭后开”区间"></a>“前闭后开”区间</h1><p>是指标准库规定，begin指向头第一个元素，end的泛化指针指向的是最后一个元素的下一个位置</p>
+<img src="/yw/3315177976/3.png" class>
+
+<p>不一定是连续的空间（链表之类）</p>
+<p>注意结尾尾处end打了个叉，表示的是这。里取出的地址并不是容器里的最后一个地址，这是危险的操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历</span></span><br><span class="line">Container&lt;T&gt; c;<span class="comment">//随便哪个容器都可</span></span><br><span class="line">...<span class="comment">//一些元素</span></span><br><span class="line">Contaniner&lt;T&gt;::iterator ite=c.<span class="built_in">begin</span>();<span class="comment">//每一个容器都有它的iterator（泛化指针）</span></span><br><span class="line"><span class="keyword">for</span>(;itr!=c.<span class="built_in">end</span>();++ite)<span class="comment">//这里说的应该是连续的空间</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h1 id="range-based-for-statement-since-C-11"><a href="#range-based-for-statement-since-C-11" class="headerlink" title="range-based for statement(since C++11)"></a>range-based for statement(since C++11)</h1><p>C++的一个版本，老师介绍一个东西</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//示例</span></span><br><span class="line"><span class="keyword">for</span> (decl:coll)&#123;<span class="comment">//decl是声明，coll是容器（集合体）</span></span><br><span class="line">    sattement</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i:&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>&#125;)&#123;<span class="comment">//c++11的新语法，可以在后面放所有stl的容器</span></span><br><span class="line">    std::cout&lt;&lt;i&lt;&lt;std::endl;<span class="comment">//这个操作就可以把他们依次输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实例</span></span><br><span class="line">std::vector&lt;<span class="type">double</span>&gt;vec;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> elem:vec)&#123;<span class="comment">//这个auto是新规定的，它的作用等同于Contaniner&lt;T&gt;::iterator（上面的例子）但是他为了书写方便，让编译器来推到这里需要什么类型</span></span><br><span class="line">    <span class="comment">//但是并不建议所有的类型都用auto来写，不是一个好习惯，熟悉每一种类型是程序员应该知道的</span></span><br><span class="line">    std::cout&lt;&lt;clem&lt;&lt;std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span>&amp; elem:vec)&#123;<span class="comment">//这里加了引用，为了下面的计算会作用到原本数据</span></span><br><span class="line">    elem*=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="auto-keyword（since-C-11）"><a href="#auto-keyword（since-C-11）" class="headerlink" title="auto keyword（since C++11）"></a>auto keyword（since C++11）</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list&lt;string&gt; c;</span><br><span class="line">...</span><br><span class="line">list&lt;string&gt;::iterator ite;</span><br><span class="line">ite=<span class="built_in">find</span>(c.<span class="built_in">begin</span>(),c.<span class="built_in">end</span>(),target);</span><br></pre></td></tr></table></figure>
+
+<p>用了auto之后</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list&lt;string&gt;c;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">auto</span> ite=::<span class="built_in">find</span>(c.<span class="built_in">begin</span>(),c.<span class="built_in">end</span>(),target);<span class="comment">//编译器会根据等号右边，判断出左边也是这种类型，目前我还看不懂这是啥</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
