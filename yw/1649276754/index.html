@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="4、容器之分类与各种测试（二）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4、容器之分类与各种测试（二）">
+<meta property="og:url" content="http://yw-by.github.io/yw/1649276754/index.html">
+<meta property="og:site_name" content="yw__y">
+<meta property="og:description" content="4、容器之分类与各种测试（二）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-21T12:35:31.000Z">
+<meta property="article:modified_time" content="2023-09-21T14:17:45.066Z">
+<meta property="article:author" content="yw-by">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yw-by.github.io/yw/1649276754/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/1649276754/","path":"yw/1649276754/","title":"4、容器之分类与各种测试（二）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>4、容器之分类与各种测试（二） | yw__y</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yw__y</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vector"><span class="nav-number">1.</span> <span class="nav-text">vector</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yw-by"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yw-by</p>
+  <div class="site-description" itemprop="description">每天早起一点，或许我能赶上他们</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/1649276754/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="4、容器之分类与各种测试（二） | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          4、容器之分类与各种测试（二）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-21 20:35:31 / 修改时间：22:17:45" itemprop="dateCreated datePublished" datetime="2023-09-21T20:35:31+08:00">2023-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BE%AF%E6%8D%B7-STL%E5%92%8C%E6%B3%9B%E5%8C%96%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">侯捷 - STL和泛化编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>4、容器之分类与各种测试（二）</p>
+<span id="more"></span>
+
+<p>测试程序的编写的一些建议：</p>
+<p>对于一种容器的测试的代码写在一起，当然所有的测试程序放在一个里，不然测试有些麻烦，多使用namespace来写测试程序。将测试则本容器所需要include的头文件放在测试代码上方，这回导致重复引入，但是没有关系，头文件有防卫式声明。这会方便你查看这个测试代码用到了哪些库。</p>
+<p>定义声明变量，在你要使用它的时候再去定义，突排的方式（好找）</p>
+<p>以上习惯用于测试代码的编写方式</p>
+<h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><p>vector的增长方式：长度不够时，扩充方式是两倍增长，例：一开始是0，放一个，分配器分配一个空间，再放第二个时，一个变两个，再放第三个时，两个变四个当放到第五个时，四变八。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdexcept&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span>   <span class="comment">// snprintf()</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span>  <span class="comment">// abort()</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;pub.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> std::cin;</span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"><span class="keyword">using</span> std::string;</span><br><span class="line"><span class="keyword">using</span> std::vector;</span><br><span class="line"><span class="keyword">using</span> std::exception;</span><br><span class="line"><span class="keyword">using</span> std::find;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> jj02</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">test_vector</span><span class="params">(<span class="type">long</span>&amp; totalCount)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;\ntest_vector()......... \n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	    vector&lt;string&gt; c;</span><br><span class="line">	    <span class="type">char</span> buf[<span class="number">10</span>];</span><br><span class="line">		<span class="comment">//srand((unsigned)time(NULL));</span></span><br><span class="line">	    <span class="type">clock_t</span> timeStart = <span class="built_in">clock</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">long</span> i = <span class="number">0</span>; i &lt; totalCount; ++i) </span><br><span class="line">		&#123;</span><br><span class="line">		    <span class="keyword">try</span> &#123;<span class="comment">//try catch防止发生申请不到内存的情况</span></span><br><span class="line">			<span class="built_in">snprintf</span>(buf, <span class="number">10</span>, <span class="string">&quot;%d&quot;</span>, <span class="built_in">rand</span>() % <span class="number">65535</span>);</span><br><span class="line">			c.<span class="built_in">push_back</span>(<span class="built_in">string</span>(buf));<span class="comment">//这里是获取尾部，填充字符串，存的是指针</span></span><br><span class="line">		    &#125; <span class="built_in">catch</span>(std::exception&amp; e) &#123;</span><br><span class="line"></span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;i=&quot;</span> &lt;&lt; i &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; endl;</span><br><span class="line">			<span class="comment">// 曾经最高 i=58389486 then std::bad_alloc//这句话的意思是老师曾经测试时发生了申请不到内存的情况</span></span><br><span class="line">			<span class="built_in">abort</span>();<span class="comment">//发生异常退出程序</span></span><br><span class="line">		    &#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;milli-seconds:&quot;</span> &lt;&lt; (<span class="built_in">clock</span>() - timeStart) &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;vector.size()= &quot;</span> &lt;&lt; c.<span class="built_in">size</span>() &lt;&lt; endl;<span class="comment">//返回内部真正的元素个数</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;vector.front()= &quot;</span> &lt;&lt; c.<span class="built_in">front</span>() &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;vector.back()= &quot;</span> &lt;&lt; c.<span class="built_in">back</span>() &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;vector.data()= &quot;</span> &lt;&lt; c.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;vector.capacity()= &quot;</span> &lt;&lt; c.<span class="built_in">capacity</span>() &lt;&lt; endl;<span class="comment">//返回它申请的空间个数</span></span><br><span class="line"></span><br><span class="line">	    string target = <span class="built_in">get_a_target_string</span>();<span class="comment">//问寻找哪一个字符串</span></span><br><span class="line">		&#123;<span class="comment">//这里是第一次查找，循序查找</span></span><br><span class="line">		timeStart = <span class="built_in">clock</span>();</span><br><span class="line">	    <span class="keyword">auto</span> pItem = ::<span class="built_in">find</span>(c.<span class="built_in">begin</span>(), c.<span class="built_in">end</span>(), target);<span class="comment">//这里用了auto，原本类型应该是iterator</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;::find(), mill-seconds: &quot;</span> &lt;&lt; (<span class="built_in">clock</span>()-timeStart) &lt;&lt; endl;<span class="comment">//输出特地加了：：来表示全局函数</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (pItem != c.<span class="built_in">end</span>())</span><br><span class="line">		    cout &lt;&lt; <span class="string">&quot;found, &quot;</span> &lt;&lt; *pItem &lt;&lt; endl;<span class="comment">//找到了，输出的内容是通过寻找返回的地址输出出来的</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		    cout &lt;&lt; <span class="string">&quot;not found! &quot;</span> &lt;&lt; endl;</span><br><span class="line">		&#125;	</span><br><span class="line"></span><br><span class="line">		&#123;<span class="comment">//这里进行了第二次查找</span></span><br><span class="line">		timeStart = <span class="built_in">clock</span>();</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">sort</span>(c.<span class="built_in">begin</span>(), c.<span class="built_in">end</span>());<span class="comment">//进行了排序，为下面二分查找做准备，c++提供的</span></span><br><span class="line">		</span><br><span class="line">	    string* pItem = (string*)<span class="built_in">bsearch</span>(&amp;target, (c.<span class="built_in">data</span>()), c.<span class="built_in">size</span>(), <span class="built_in">sizeof</span>(string), compareStrings);<span class="comment">//bsearch（binary search）二分查找，这个是c就有的</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;sort()+bsearch(), milli-seconds: &quot;</span> &lt;&lt; (<span class="built_in">clock</span>() - timeStart) &lt;&lt; endl;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (pItem != <span class="literal">NULL</span>)</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;found, &quot;</span> &lt;&lt; *pItem &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;not found!&quot;</span> &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果是循序查找比二分查找更快，因为二分查找要先排序，sort用的时间比较多。</p>
+<p>了解了vector的存储方式，分配空间的时候是两倍扩展，感觉像是可变数组。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yw-by
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yw-by.github.io/yw/1649276754/" title="4、容器之分类与各种测试（二）">http://yw-by.github.io/yw/1649276754/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yw/3760995519/" rel="prev" title="3、容器之分类与各种测试">
+                  <i class="fa fa-chevron-left"></i> 3、容器之分类与各种测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">yw-by</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
