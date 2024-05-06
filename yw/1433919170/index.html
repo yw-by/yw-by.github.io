@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yw-by.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="堆利用入门">
+<meta property="og:url" content="http://yw-by.github.io/yw/1433919170/index.html">
+<meta property="og:site_name" content="yw__y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/3.jpg">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/1.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/7.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/2.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/3.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/8.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/9.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/10.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/11.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/12.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/13.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/14.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/15.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/1433919170/16.png">
+<meta property="article:published_time" content="2023-10-23T14:39:06.000Z">
+<meta property="article:modified_time" content="2023-10-24T08:59:00.108Z">
+<meta property="article:author" content="yw-by">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yw-by.github.io/yw/1433919170/3.jpg">
+
+
+<link rel="canonical" href="http://yw-by.github.io/yw/1433919170/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yw-by.github.io/yw/1433919170/","path":"yw/1433919170/","title":"堆利用入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>堆利用入门 | yw__y</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yw__y</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A0%86%E5%88%A9%E7%94%A8%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">堆利用入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#arena"><span class="nav-number">1.1.</span> <span class="nav-text">arena</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chunk"><span class="nav-number">1.2.</span> <span class="nav-text">chunk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%AF%B9%E9%BD%90"><span class="nav-number">1.3.</span> <span class="nav-text">堆的大小对齐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E4%B8%80%E4%BA%9B%E5%90%8D%E8%AF%8D"><span class="nav-number">2.</span> <span class="nav-text">堆的一些名词</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bin"><span class="nav-number">2.1.</span> <span class="nav-text">bin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prev-size"><span class="nav-number">2.2.</span> <span class="nav-text">prev_size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#size"><span class="nav-number">2.3.</span> <span class="nav-text">size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fd-pointer%EF%BC%88Forward-Pointer%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">fd pointer（Forward Pointer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bk-pointer%EF%BC%88Backward-Pointer%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">bk pointer（Backward Pointer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fd-nextsize"><span class="nav-number">2.6.</span> <span class="nav-text">fd_nextsize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bk-nextsize"><span class="nav-number">2.7.</span> <span class="nav-text">bk_nextsize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fast-bins"><span class="nav-number">2.8.</span> <span class="nav-text">fast bins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unsorted-bin"><span class="nav-number">2.9.</span> <span class="nav-text">unsorted bin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#small-bins"><span class="nav-number">2.10.</span> <span class="nav-text">small bins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#large-bins"><span class="nav-number">2.11.</span> <span class="nav-text">large bins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#malloc"><span class="nav-number">2.12.</span> <span class="nav-text">malloc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#free"><span class="nav-number">2.13.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcache-bin"><span class="nav-number">2.14.</span> <span class="nav-text">tcache bin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UAF%EF%BC%88Use-After-Free%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">UAF（Use-After-Free）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9Aactf-2019-babyheap"><span class="nav-number">3.1.</span> <span class="nav-text">例题：actf_2019_babyheap</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yw-by"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yw-by</p>
+  <div class="site-description" itemprop="description">每天早起一点，或许我能赶上他们</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/1433919170/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="堆利用入门 | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          堆利用入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-10-23 22:39:06" itemprop="dateCreated datePublished" datetime="2023-10-23T22:39:06+08:00">2023-10-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-24 16:59:00" itemprop="dateModified" datetime="2023-10-24T16:59:00+08:00">2023-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PWN/" itemprop="url" rel="index"><span itemprop="name">PWN</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PWN/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><img src="/yw/1433919170/3.jpg" class>
+
+<span id="more"></span>
+
+<h1 id="堆利用入门"><a href="#堆利用入门" class="headerlink" title="堆利用入门"></a>堆利用入门</h1><h2 id="arena"><a href="#arena" class="headerlink" title="arena"></a>arena</h2><p>内存分配区，可以理解为堆管理器所持有的内存池</p>
+<blockquote>
+<p>操作系统-》堆管理器-》用户</p>
+<p>物理内存-》arena-》可用内存</p>
+</blockquote>
+<p>堆管理器与用户的 交易发生在arena中可以理解为堆管理器从操作系统批发的有冗余的内存库存</p>
+<h2 id="chunk"><a href="#chunk" class="headerlink" title="chunk"></a>chunk</h2><p>用户申请内存的单位，也是堆管理内存的基本单位，malloc返回的指针指向一个chunk的数据区域</p>
+<img src="/yw/1433919170/1.png" class>
+
+
+
+<p>chunk的 结构体</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  INTERNAL_SIZE_T      prev_size;  <span class="comment">/* Size of previous chunk (if free).  */</span></span><br><span class="line">  INTERNAL_SIZE_T      size;       <span class="comment">/* Size in bytes, including overhead. */</span> </span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd</span>;</span>         <span class="comment">/* double links -- used only if free. */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Only used for large blocks: pointer to next larger size.  */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd_nextsize</span>;</span> <span class="comment">/* double links -- used only if free. */</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk_nextsize</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>chunk的分类</p>
+<p>按状态</p>
+<ul>
+<li>malloced（使用状态</li>
+<li>free（状态释放</li>
+</ul>
+<p>按大小</p>
+<ul>
+<li>fast</li>
+<li>small</li>
+<li>largh</li>
+<li>tcache</li>
+</ul>
+<p>按特定功能</p>
+<ul>
+<li>top chunk</li>
+<li>last remainder chunk</li>
+</ul>
+<p>使用状态（malloc chunk）的堆结构</p>
+<img src="/yw/1433919170/7.png" class>
+
+<p>有个堆头和一个数据区域</p>
+<p>释放状态的堆（free chunk）的堆结构</p>
+<img src="/yw/1433919170/2.png" class>
+
+<p>堆头和指针以及未使用的区域</p>
+<p>top chunk</p>
+<p>从来没有被使用的区域，申请时从其中切割</p>
+<p>last remainder chunk</p>
+<p>malloc分割原chunk后剩余的部分</p>
+<img src="/yw/1433919170/3.png" class>
+
+<p>比如说之前释放了一个很大的chunk，后面又申请了一个比它小的chunk，可以从那个大的chunk切割出需要的大小，剩下的部分就叫last remainder chunk</p>
+<h2 id="堆的大小对齐"><a href="#堆的大小对齐" class="headerlink" title="堆的大小对齐"></a>堆的大小对齐</h2><p>堆的大小必须是2乘SIZE_SZ的整数倍，如果申请的内存不是2*SIZE_SZ的整数倍，会被转成（补齐）到满足的大小。32位中SIZE_SZ&#x3D;4，64位中SIZE_SZ&#x3D;8，就是说，32位系统堆的大小为8的倍数，64位系统堆的大小为16的倍数。另外8的二进制是1000，所以不管SIZE_SE的大小是多少，对应的低三位都是0，所以利用这三位作为标志位：</p>
+<p>NON_MIAN_ARENA,记录当前chunk是否不属于主线程，1表示不属于，0表示属于。</p>
+<p>IS_MAPPED，记录chunk是否是由mmap分配的。</p>
+<p>PREV_INUSE，记录着前一个chunk块是否被分配。</p>
+<p>注意：第一个堆块的P被设置为1，因为再往前就是非法区域，这个P的作用主要是看两个chunk能不能合并</p>
+<h1 id="堆的一些名词"><a href="#堆的一些名词" class="headerlink" title="堆的一些名词"></a>堆的一些名词</h1><h2 id="bin"><a href="#bin" class="headerlink" title="bin"></a>bin</h2><p>管理arena中空闲chunk的结构，以数组的形式存在，数组元素为相应大小的chunk链表的链表头，存在于malloc_state中</p>
+<ul>
+<li>unsorted bin</li>
+<li>fast bins</li>
+<li>small bins</li>
+<li>large bins</li>
+<li>(trache glibc-2.27开始)</li>
+</ul>
+<h2 id="prev-size"><a href="#prev-size" class="headerlink" title="prev_size"></a>prev_size</h2><p>若前一个物理相邻的chunk是free chunk，则表示其大小，否则用于储存前一个chunk的数据（注释：属于前一个chunk，被前一个chunk使用作为存储数据的空间）</p>
+<p>确定前一个堆块是否被释放的标志前面说过，就是图中的p</p>
+<img src="/yw/1433919170/8.png" class>
+
+<h2 id="size"><a href="#size" class="headerlink" title="size"></a>size</h2><p>占据一字节</p>
+<p>用于表示当前chunk的大小（包括chunk头）低三位地址用作标识位</p>
+<h2 id="fd-pointer（Forward-Pointer）"><a href="#fd-pointer（Forward-Pointer）" class="headerlink" title="fd pointer（Forward Pointer）"></a>fd pointer（Forward Pointer）</h2><p>在bin中指向下一个（非物理相邻）空闲的chunk</p>
+<img src="/yw/1433919170/4.png" class>
+
+<h2 id="bk-pointer（Backward-Pointer）"><a href="#bk-pointer（Backward-Pointer）" class="headerlink" title="bk pointer（Backward Pointer）"></a>bk pointer（Backward Pointer）</h2><p>在bin中指向上一个（非物理相邻）空闲的chunk</p>
+<img src="/yw/1433919170/5.png" class>
+
+<h2 id="fd-nextsize"><a href="#fd-nextsize" class="headerlink" title="fd_nextsize"></a>fd_nextsize</h2><p>在large bin中指向前一个与当前chunk大小不同的第一个空闲块，不包含bin头指针</p>
+<img src="/yw/1433919170/6.png" class>
+
+<h2 id="bk-nextsize"><a href="#bk-nextsize" class="headerlink" title="bk_nextsize"></a>bk_nextsize</h2><p>在large bin中指向后一个与当前chunk大小不同的第一个空闲块，不包含bin头指针</p>
+<img src="/yw/1433919170/9.png" class>
+
+<p>一般空闲的large chunk在fd的遍历顺序中按照从大到小的顺序排列。这样就可以避免在寻找合适的chunk时挨个遍历</p>
+<h2 id="fast-bins"><a href="#fast-bins" class="headerlink" title="fast bins"></a>fast bins</h2><ul>
+<li><p>fastbinsY[]</p>
+</li>
+<li><p>单项链表</p>
+</li>
+<li><p>LIFO</p>
+</li>
+<li><p>管理16、24、32、40、56、64Bytes的free chunks（32位下默认）</p>
+</li>
+<li><p>其中的chunk的in_use位（下一个物理相邻的chunk的P位）总为1</p>
+<p>下面是一个例子</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lfastbin unsortedbin smallbin</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> <span class="type">const</span> *argv[ ])</span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="built_in">malloc</span> (<span class="number">0x10</span>);</span><br><span class="line">    <span class="type">int</span> b = <span class="built_in">malloc</span> (<span class="number">0x10</span>);</span><br><span class="line">    <span class="type">int</span> c = <span class="built_in">malloc</span> (<span class="number">0x10</span>);</span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">    <span class="built_in">free</span>(a); <span class="comment">//fastbin</span></span><br><span class="line">    mallopt(<span class="number">1</span>,<span class="number">0</span>);<span class="comment">//修改global_max_fast = 0,进入unsorted bin，默认大小是0x80，这里设置为0</span></span><br><span class="line">    <span class="built_in">malloc</span>(<span class="number">0x50</span>);<span class="comment">//进入small bin</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译之后运行不了，是Ubuntu版本问题，改用16可以，，，</p>
+<p>在用gdb调试</p>
+<p>这是我的调试之后堆情况，不理解为啥size后面是地址，bk指针却是大小。。。</p>
+<img src="/yw/1433919170/10.png" class>
+
+<p>断点断在最后一次malloc处，根据源代码，应该有两个0x20的，应该被整合到一起了</p>
+<p>这是视频的调试堆情况，应该是插件版本的原因，我的pwndbg没有paresheap这个指令</p>
+<img src="/yw/1433919170/11.png" class>
+
+<p>视频说：在fast bin相邻的堆块其实是不会合并的，为了更高效的利用，有时系统会申请小块内存</p>
+<img src="/yw/1433919170/12.png" class>
+
+<img src="/yw/1433919170/13.png" class>
+
+<p>上面是视频，下面是本地调试</p>
+<p>后面的是0x20+1（大小和标识（前一个chunk空闲））</p>
+<h2 id="unsorted-bin"><a href="#unsorted-bin" class="headerlink" title="unsorted bin"></a>unsorted bin</h2><ul>
+<li><p>bins[1]</p>
+</li>
+<li><p>管理刚刚释放还未分类的chunk</p>
+</li>
+<li><p>可以视为空闲chunk回归其所属bin之前的缓冲区</p>
+</li>
+</ul>
+<p>后来的视频提到，把fast bin关闭后两个小的内存就会合并到unsorted bin</p>
+<img src="/yw/1433919170/14.png" class>
+
+<p>果然尝试断点打在<code> mallopt(1,0);//修改global_max_fast = 0，进入unsorted bin</code>之前就达到了视频中的结果</p>
+<h2 id="small-bins"><a href="#small-bins" class="headerlink" title="small bins"></a>small bins</h2><ul>
+<li>bins[2]~bins[63]</li>
+<li>62个循环双链表</li>
+<li>FIFO</li>
+<li>管理16、24、32、40、。。。。。。、504 Bytes的free chunks（32位下）</li>
+<li>每个链表中存储的chunk大小都一致</li>
+</ul>
+<h2 id="large-bins"><a href="#large-bins" class="headerlink" title="large bins"></a>large bins</h2><ul>
+<li>bin[64]~bins[126]</li>
+<li>63个循环双向链表</li>
+<li>FIFO</li>
+<li>管理大于504Bytes的free chunks（32位下）</li>
+</ul>
+<h2 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h2><ul>
+<li>它根据用户申请的内存块大小以及相应大小chunk通常使用的频率（fast bin chunk，small bin chunk，large bin chunk），依次实现了不同的分配方法。（先在fastbin找，有就直接返回这块地址的，fastbin没有去smallbin找，找到了返回找不到去largebin找，找到先切割一下再返回）</li>
+<li>当所有空闲chunk都无法满足时，才会考虑top chunk。</li>
+<li>当top chunk也无法满足时，堆分配器才会进行内存块申请。</li>
+</ul>
+<p>mmap函数申请的内存释放时直接归还操作系统</p>
+<h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><ul>
+<li>它就用户暂且不用的chunk回收给堆管理器，适当的时候还会归还给操作系统。</li>
+<li>它依据chunk大小来优先试图将free chunk链入tcache或者是fast bin。不满足则链入unsort bin中。</li>
+<li>除了tcache chunk与fast bin chunk，其他chunk在free时会与其他物理相邻的free chunk合并</li>
+</ul>
+<h2 id="tcache-bin"><a href="#tcache-bin" class="headerlink" title="tcache bin"></a>tcache bin</h2><p>tcachebin比fastbin大，作用与fastbin类似，可以说成是扩大版的fastbin，最大是0x410(多了会扔到unsort bin里）但是它只能存七个（），fastbin可以是无限的</p>
+<p>tcachebin没有double free的机制（还不知道是啥）</p>
+<h1 id="UAF（Use-After-Free）"><a href="#UAF（Use-After-Free）" class="headerlink" title="UAF（Use-After-Free）"></a>UAF（Use-After-Free）</h1><p>释放后重用漏洞</p>
+<p>程序有漏洞，可以对释放后的堆块进行改写</p>
+<p>一个例子</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> target[<span class="number">100</span>];</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> *p=<span class="built_in">malloc</span>(<span class="number">0x10</span>);</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p[<span class="number">0</span>]=target;<span class="comment">//p_chunk-&gt;fd is modified(意味修改)，此处是将p的fd指针改为target地址，目的是伪造一个chunk</span></span><br><span class="line">    target[<span class="number">0</span>]=<span class="number">0</span>;<span class="comment">//prev_size</span></span><br><span class="line">    target[<span class="number">1</span>]=<span class="number">0x21</span>;<span class="comment">//size</span></span><br><span class="line">    <span class="built_in">malloc</span>(<span class="number">0x10</span>);<span class="comment">//must be same as p，因为fastbin里有刚刚进去的p大小一样</span></span><br><span class="line">    <span class="type">char</span> *q=<span class="built_in">malloc</span>(<span class="number">0x10</span>);<span class="comment">//must be same as target，因为我们改了p的fd指针，在p从fastbin分配出去后，下一个指向的空闲的chunk就是我们伪造的chunk</span></span><br><span class="line">    <span class="built_in">memcpy</span>(q,<span class="string">&quot;hello&quot;</span>,<span class="number">6</span>);<span class="comment">//用memcpy函数在q写入hello</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,&amp;target[<span class="number">2</span>]);<span class="comment">//打印target第三个元素，看看是不是hello，如果是那么伪造成功</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行，发现和我们预测的一样</p>
+<img src="/yw/1433919170/15.png" class>
+
+<p>整个程序都没有修改target[2]处的值，我们只是修改了target[0]和[1]处的值</p>
+<p>另外说明，这个程序只适用于，没有tcache的ubuntu16.04即libc2.23环境下，有了tcache之后就不能用攻击fastbin的方式了</p>
+<p>从以上示例内容处可以看出来，如果可以使用一个被释放了的堆，就可以把堆分配到任意想分配的位置（包括各种函数指针），把函数指针劫持了就相当于劫持了程序的控制流，就可以以该程序所在的权限去做想做的事情</p>
+<p>下面是一道buuctf的堆题</p>
+<h2 id="例题：actf-2019-babyheap"><a href="#例题：actf-2019-babyheap" class="headerlink" title="例题：actf_2019_babyheap"></a>例题：actf_2019_babyheap</h2><p>下载之后运行，ida反编译</p>
+<p>搜索找到了敏感函数和&#x2F;bin&#x2F;sh字符串</p>
+<p>讲课人说遇到堆题坚定不移先看删除函数</p>
+<p>删除函数sub_400BAE()</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">sub_400BAE</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v1; <span class="comment">// [rsp+Ch] [rbp-24h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">24</span>]; <span class="comment">// [rsp+10h] [rbp-20h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v3; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Please input list index: &quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">4uLL</span>);</span><br><span class="line">  v1 = atoi(buf);</span><br><span class="line">  <span class="keyword">if</span> ( v1 &gt;= <span class="number">0</span> &amp;&amp; v1 &lt; dword_60204C )<span class="comment">//删除前有检查</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(&amp;ptr + v1) )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">free</span>(*(<span class="type">void</span> **)*(&amp;ptr + v1));<span class="comment">//先是释放了指向的堆块</span></span><br><span class="line">      <span class="built_in">free</span>(*(&amp;ptr + v1));<span class="comment">//接着释放了自己本身（自身是一个指针）</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="comment">//但是删除后没有置空，有问题</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Out of bound!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>删除函数有一点问题</p>
+<p>创建函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">sub_400A78</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">void</span> **v0; <span class="comment">// rbx</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+8h] [rbp-38h]</span></span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// [rsp+Ch] [rbp-34h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">24</span>]; <span class="comment">// [rsp+10h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v5; <span class="comment">// [rsp+28h] [rbp-18h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="keyword">if</span> ( dword_60204C &lt;= <span class="number">5</span> )<span class="comment">//一个计数器</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">4</span>; ++i )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( !*(&amp;ptr + i) )</span><br><span class="line">      &#123;</span><br><span class="line">        *(&amp;ptr + i) = <span class="built_in">malloc</span>(<span class="number">0x10</span>uLL);</span><br><span class="line">        *((_QWORD *)*(&amp;ptr + i) + <span class="number">1</span>) = sub_40098A;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;Please input size: &quot;</span>);<span class="comment">//自己确定大小</span></span><br><span class="line">        read(<span class="number">0</span>, buf, <span class="number">8uLL</span>);</span><br><span class="line">        v3 = atoi(buf);</span><br><span class="line">        v0 = (<span class="type">void</span> **)*(&amp;ptr + i);</span><br><span class="line">        *v0 = <span class="built_in">malloc</span>(v3);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;Please input content: &quot;</span>);<span class="comment">//输入内容</span></span><br><span class="line">        read(<span class="number">0</span>, *(<span class="type">void</span> **)*(&amp;ptr + i), v3);</span><br><span class="line">        ++dword_60204C;</span><br><span class="line">        <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v5;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;The list is full&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建函数没有问题</p>
+<p>打印函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> __int64 <span class="title function_">sub_400C66</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v1; <span class="comment">// [rsp+Ch] [rbp-24h]</span></span><br><span class="line">  <span class="type">char</span> buf[<span class="number">24</span>]; <span class="comment">// [rsp+10h] [rbp-20h] BYREF</span></span><br><span class="line">  <span class="type">unsigned</span> __int64 v3; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v3 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Please input list index: &quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, buf, <span class="number">4uLL</span>);</span><br><span class="line">  v1 = atoi(buf);</span><br><span class="line">  <span class="keyword">if</span> ( v1 &gt;= <span class="number">0</span> &amp;&amp; v1 &lt; dword_60204C )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(&amp;ptr + v1) )</span><br><span class="line">      (*((<span class="type">void</span> (__fastcall **)(_QWORD))*(&amp;ptr + v1) + <span class="number">1</span>))(*(_QWORD *)*(&amp;ptr + v1));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Out of bound!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> __readfsqword(<span class="number">0x28</span>u) ^ v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是没看明白是怎么输出的，视频经过逆向处理后函数是这样的</p>
+<img src="/yw/1433919170/16.png" class>
+
+<p>好像是通过指针来输出的，正常一个printf就可以了，但是这里用了指针，有点问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yw-by
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://yw-by.github.io/yw/1433919170/" title="堆利用入门">http://yw-by.github.io/yw/1433919170/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yw/3284650971/" rel="prev" title="高级ROP-SROP">
+                  <i class="fa fa-chevron-left"></i> 高级ROP-SROP
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/yw/2706583964/" rel="next" title="计算机系统基础">
+                  计算机系统基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">yw-by</span>
+  </div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
