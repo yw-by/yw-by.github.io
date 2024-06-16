@@ -29,8 +29,12 @@
 <meta property="og:image" content="http://yw-by.github.io/yw/2171830080/2.png">
 <meta property="og:image" content="http://yw-by.github.io/yw/2171830080/3.png">
 <meta property="og:image" content="http://yw-by.github.io/yw/2171830080/4.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/5.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/6.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/7.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/8.png">
 <meta property="article:published_time" content="2024-06-13T13:19:29.000Z">
-<meta property="article:modified_time" content="2024-06-14T04:19:51.309Z">
+<meta property="article:modified_time" content="2024-06-16T12:18:42.810Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yw-by.github.io/yw/2171830080/13.jpg">
@@ -115,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#p1%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">p1工程创建</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">工程创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E9%94%AE"><span class="nav-number">2.</span> <span class="nav-text">按键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD"><span class="nav-number">3.</span> <span class="nav-text">中断</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -202,7 +206,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-06-14 12:19:51" itemprop="dateModified" datetime="2024-06-14T12:19:51+08:00">2024-06-14</time>
+      <time title="修改时间：2024-06-16 20:18:42" itemprop="dateModified" datetime="2024-06-16T20:18:42+08:00">2024-06-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -231,7 +235,7 @@
 
 <span id="more"></span>
 
-<h1 id="p1工程创建"><a href="#p1工程创建" class="headerlink" title="p1工程创建"></a>p1工程创建</h1><p>对于启动文件的选择</p>
+<h2 id="工程创建"><a href="#工程创建" class="headerlink" title="工程创建"></a>工程创建</h2><p>对于启动文件的选择</p>
 <img src="/yw/2171830080/0.png" class>
 
 <p>创建工程的基本步骤</p>
@@ -259,6 +263,28 @@
 
 <p>推挽输出高低电平都有驱动能力</p>
 <p>开漏输出高电平相当于高阻态，没有驱动能力，低电平有驱动能力</p>
+<p>PA15、PB3、PB4这三个端口是调试端口如果要当做普通端口使用需要进行一些配置</p>
+<h2 id="按键"><a href="#按键" class="headerlink" title="按键"></a>按键</h2><p>按键抖动：在按下和松手的瞬间会伴随一连串的抖动，通常是5-10ms</p>
+<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><img src="/yw/2171830080/5.png" class>
+
+<p>NVIC是stm32中一个管理中断优先级的东西</p>
+<img src="/yw/2171830080/6.png" class>
+
+<p>用医院病人排队举例</p>
+<p>NVIC分组，分为两种：</p>
+<p>响应优先级：正常病人是排队的，但是当有一个病人是紧急的，这个病人就可以等正在看病的病人出来他直接去看病（插队，后来先进）</p>
+<p>抢占优先级：同样是排队，一个病人快死了，他可以直接进入看病，目前正在看病的病人先让开，等他看完再接着看（中断嵌套）</p>
+<p>这里注意：不存在先来后到的排队，只有优先级的排队，当抢占优先级和相应优先级序号相同时，根据他们不同的响应种类在排序，都是序号小的先处理</p>
+<img src="/yw/2171830080/7.png" class>
+
+<p>这个分组有点像计算机网络里的子网划分，一共四位，根据需要自己分配</p>
+<p>EXIT</p>
+<img src="/yw/2171830080/8.png" class>
+
+<p>触发条件中的软件中断指程序中一行代码指令也可触发中断</p>
+<p>支持的GPIO口中相同pin不能同时触发中断，比如：PA1、PB1、PC1都有，但是只能选一个，</p>
+<p>像PA2、PB3，PA1、PA2，这样的都是可以同时触发中断的</p>
+<p>触发响应方式中的事件响应指发生中断，不会走正常流程去中断cpu而是去执行其他外设操作</p>
 
     </div>
 
