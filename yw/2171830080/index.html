@@ -33,8 +33,16 @@
 <meta property="og:image" content="http://yw-by.github.io/yw/2171830080/6.png">
 <meta property="og:image" content="http://yw-by.github.io/yw/2171830080/7.png">
 <meta property="og:image" content="http://yw-by.github.io/yw/2171830080/8.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/8.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/9.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/10.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/11.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/12.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/13.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/14.png">
+<meta property="og:image" content="http://yw-by.github.io/yw/2171830080/15.png">
 <meta property="article:published_time" content="2024-06-13T13:19:29.000Z">
-<meta property="article:modified_time" content="2024-06-16T12:18:42.810Z">
+<meta property="article:modified_time" content="2024-06-18T07:32:39.308Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yw-by.github.io/yw/2171830080/13.jpg">
@@ -206,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-06-16 20:18:42" itemprop="dateModified" datetime="2024-06-16T20:18:42+08:00">2024-06-16</time>
+      <time title="修改时间：2024-06-18 15:32:39" itemprop="dateModified" datetime="2024-06-18T15:32:39+08:00">2024-06-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,6 +293,36 @@
 <p>支持的GPIO口中相同pin不能同时触发中断，比如：PA1、PB1、PC1都有，但是只能选一个，</p>
 <p>像PA2、PB3，PA1、PA2，这样的都是可以同时触发中断的</p>
 <p>触发响应方式中的事件响应指发生中断，不会走正常流程去中断cpu而是去执行其他外设操作</p>
+<p>定时器TIM</p>
+<img src="/yw/2171830080/8.png" class>
+
+<img src="/yw/2171830080/9.png" class>
+
+<p>一些公式：</p>
+<img src="/yw/2171830080/10.png" class>
+
+
+
+<p>输出比较</p>
+<img src="/yw/2171830080/11.png" class>
+
+<p>PWM波形</p>
+<img src="/yw/2171830080/12.png" class>
+
+<p>以灯泡的逐渐亮灭为例：</p>
+<p>pwm可以输出控制亮灭的高低电平，使其达到一种人眼看不出来的频率快速切换，通过调整亮灭的比例就可以呈现出灯泡的不同亮度（人眼会将平均亮度作为亮度）</p>
+<p>但是电机速度也是一样的，这个跟人眼没关系了</p>
+<p>pwm必须工作在一个惯性系统：LED因为余晖和人眼的暂留效用不会立刻熄灭，电机也是不断电后立刻停止转动</p>
+<p>pwm通过数字信号生成模拟信号</p>
+<img src="/yw/2171830080/13.png" class>
+
+<p>冻结：暂停输出</p>
+<p>在这里有效电平 和无效电平 理解为 高电平和低电平</p>
+<p>一些公式：</p>
+<img src="/yw/2171830080/14.png" class>
+
+<p>频率测量</p>
+<img src="/yw/2171830080/15.png" class>
 
     </div>
 
