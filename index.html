@@ -122,13 +122,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -148,6 +148,92 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/3147944645/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yw-by">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yw__y">
+      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yw__y">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/yw/3147944645/" class="post-title-link" itemprop="url">算法笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-18 19:10:15 / 修改时间：21:56:10" itemprop="dateCreated datePublished" datetime="2024-09-18T19:10:15+08:00">2024-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/yw/undefined/9.jpg" class>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/yw/3147944645/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -363,7 +449,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/yw/1633824014/" class="post-title-link" itemprop="url">笔记</a>
+          <a href="/yw/1633824014/" class="post-title-link" itemprop="url">STL笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -381,7 +467,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-14 19:48:39" itemprop="dateModified" datetime="2024-09-14T19:48:39+08:00">2024-09-14</time>
+      <time title="修改时间：2024-09-18 19:24:04" itemprop="dateModified" datetime="2024-09-18T19:24:04+08:00">2024-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -403,15 +489,256 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <img src="/yw/1633824014/11.jpg" class>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/yw/1633824014/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          
+
+<span id="more"></span>
+
+<h2 id="2024-4-8"><a href="#2024-4-8" class="headerlink" title="2024.4.8"></a>2024.4.8</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _construct(T1* p, <span class="type">const</span> T2&amp; value)&#123;</span><br><span class="line">    <span class="keyword">new</span>(p) <span class="built_in">T1</span>(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>new(p) T1(value);使用的是placement new运算符来构造对象，不会动态分配内存，而是在给定的地址（指针p指向的位置）上构造一个类型为T1的对象，并使用T2类型的value来初始化他。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _deallocat(T* buffer)&#123;</span><br><span class="line">::<span class="function">operater <span class="title">delete</span> <span class="params">(buffer)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>::operater delete是一个全局作用的删除函数，用于释放new动态分配的内存。</p>
+<p>operater delete是一个预定义的全局作用的删除函数，当我们调用delete函数时，在底层实现中该函数调用了operater delete函数</p>
+<p>这种释放方式只是释放指定的地址的内存（两个版本，一个是单个的释放，只有一个参数(地址)，另一个版本是两个参数（地址+大小)）</p>
+<p>它不会释放对象的内存，对象的内存释放需要析构函数，析构函数只是释放对象的内存，对于动态分配给对象的空间不会通过析构函数直接释放，除非显式释放（自己写一个）。</p>
+<p>举例子说:我有一个对象中有一个指针，我给指针动态分配了一些内存，当调用析构函数时只会释放指针，不会释放指针指向那块空间。</p>
+<p>结构体的定义可以写在类里</p>
+<p>typedef的作用是为已有类型创建一个别名，可以使用别名进行已有类型的操作。</p>
+<p>全文是这样的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;calss T&gt; </span><br><span class="line"><span class="keyword">inline</span> T* _allocate(<span class="type">ptrdiff_t</span> size, T*)&#123;</span><br><span class="line"><span class="built_in">set_new_handler</span>(<span class="number">0</span>);</span><br><span class="line">T* tem=(T*)(::<span class="keyword">operator</span> <span class="built_in">new</span>((<span class="type">size_t</span>)(size*<span class="built_in">sizeof</span>(T))));</span><br><span class="line"><span class="keyword">if</span>(tem==<span class="number">0</span>)&#123;</span><br><span class="line">cerr&lt;&lt;<span class="string">&quot;out of memory&quot;</span>&lt;&lt;endl;</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> tem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>set_new_handler(0);这一行意为取消先前设置的内存分配失败处理函数</p>
+<p>这里留有疑问，前面没有设置对于内存分配失败的处理函数</p>
+<p>可能是为了当分配失败时将后面的tem设置为0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;calss T&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">void</span> _deallocate(T* buffer)&#123;</span><br><span class="line">::<span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(buffer)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">deallocate</span><span class="params">(pointer p,ssize_type n)</span></span>&#123; _deallocate(p)&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里有一个问题，如果p是一个指向大块空间的指针的话，只释放了指针p，那剩余的空间是不是造成了内存泄露</p>
+<h2 id="2024-44-10"><a href="#2024-44-10" class="headerlink" title="2024.44.10"></a>2024.44.10</h2><p>trivial destructor 中文意思(直译:琐碎的爆炸装置)哈哈哈)gpt翻译是平凡析构函数，意思是：</p>
+<p>当一个析构函数是用户未定义或者是使用的编译器默认的析构函数或被显式声明为“&#x3D;default”时我们称这个析构函数是trivial的析构函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">=default 是 C++11 中的一个特殊语法,只能用于特定的成员函数：如拷贝构造，析构，构造，操作符重载</span><br><span class="line">用法：函数() =default;</span><br></pre></td></tr></table></figure>
+
+<p>如果有的析构函数什么事也不做，用一个词”无关痛痒”,那么对[first ,last)的析构就不需要做任何事情，当这个范围很大的时候还去一个一个调用对应对象的析构函数很浪费时间，降低效率。因此在进行对象的析构时会利用value_type()对对象的类型进行判断，再利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type_traits&lt;T&gt;看是否对应的析构函数是trivial的，如果是__ture_type,则什么也不做就结束，如果是__false_type,再循环遍历整个范围进行调用对应析构函数(第一个版本的destory)</span><br></pre></td></tr></table></figure>
+
+<p>对Alloc的包装</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>,<span class="keyword">class</span> <span class="title class_">Alloc</span>&gt;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">simple_alloc</span>&#123;</span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">static</span> T *<span class="title">allocate</span><span class="params">(<span class="type">size_t</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">static</span> T *<span class="title">allocate</span><span class="params">(<span class="type">void</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">dellocate</span><span class="params">(T* ,<span class="type">size_t</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">deallocate</span><span class="params">(T*)</span></span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个疑问:下面两种分配方式的区别</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> simple_alloc&lt;T,Alloc&gt; data_alloctor;</span><br><span class="line"><span class="keyword">typedef</span> simple_alloc&lt;t*,Alloc&gt; map_alloctor;</span><br><span class="line">data_alloctor::<span class="built_in">allocate</span>(n);<span class="comment">//配置n个元素</span></span><br><span class="line">map_alloctor::<span class="built_in">allocate</span>(n);<span class="comment">//配置n个节点</span></span><br></pre></td></tr></table></figure>
+
+<p>data_alloctor::allocate(n);&#x2F;&#x2F;配置n个元素分配出来的是T对象</p>
+<p>map_alloctor::allocate(n);&#x2F;&#x2F;配置n个节点分配出来的是指向T类型数据的指针，整个指针所指向的地址是后面再去初始化的</p>
+<p>gpt的例子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T* data_ptr = data_alloctor::<span class="built_in">allocate</span>(<span class="number">5</span>); <span class="comment">// 分配 5 个 T 类型的对象</span></span><br><span class="line">T** map_ptr = map_alloctor::<span class="built_in">allocate</span>(<span class="number">5</span>); <span class="comment">// 分配 5 个指向 T 类型对象的指针</span></span><br></pre></td></tr></table></figure>
+
+<p>可能有些绕，上面的是分配的空间赋值给了一个指针，说的可能不太对，让那个data_ptr指向我们分配的地址</p>
+<p>下面的分配是分配出一个指针赋值给了一个二级指针</p>
+<h2 id="2024-4-17"><a href="#2024-4-17" class="headerlink" title="2024.4.17"></a>2024.4.17</h2><p>__STL_BEGIN_NAMESPACE是c++中定义命名空间的语句</p>
+<p>与之配合使用的是__STL_END_NAMESPACE</p>
+<h2 id="2024-4-22"><a href="#2024-4-22" class="headerlink" title="2024.4.22"></a>2024.4.22</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> *<span class="title">realloc</span><span class="params">(<span class="type">void</span> *ptr,<span class="type">size_t</span> size)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>作用是重新分配内存，有以下几种情况</p>
+<ol>
+<li>如果 <code>ptr</code> 是空指针，那么 <code>realloc</code> 就等同于 <code>malloc(size)</code>，直接分配 <code>size</code> 大小的内存块，并返回指向该内存块的指针。</li>
+<li>如果 <code>size</code> 是 0，并且 <code>ptr</code> 不是空指针，那么 <code>realloc</code> 的行为类似于 <code>free(ptr)</code>，即释放 <code>ptr</code> 指向的内存，并返回空指针。</li>
+<li>如果 <code>ptr</code> 不是空指针，并且 <code>size</code> 不为 0，那么 <code>realloc</code> 尝试重新分配 <code>ptr</code> 指向的内存空间为 <code>size</code> 大小。如果成功，返回指向重新分配后内存块的指针；如果失败，返回空指针，原来的内存块不会被修改。</li>
+<li>如果 <code>ptr</code> 不是空指针，并且 <code>size</code> 小于等于原来分配的大小，那么 <code>realloc</code> 可能会缩小内存块，返回指向原来内存块的指针。这种情况下，原来的数据可能会被截断。</li>
+<li>如果 <code>ptr</code> 不是空指针，并且 <code>size</code> 大于原来分配的大小，那么 <code>realloc</code> 会尝试扩展内存块。如果在原内存块后有足够的连续空间，那么就在原来的内存块上扩展；否则会重新分配一个足够大的内存块，将原数据复制过去，释放原来的内存块，并返回指向新分配内存的指针。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstddef&gt;</span><span class="comment">//提供了一些与指针和偏移量相关的常量和类型，例如&quot;std::ptrdiff_t&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span><span class="comment">//包含了一些与C标准库相关的函数和宏定义，例如内存分配函数&#x27;malloc()&#x27;和&#x27;free()&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span><span class="comment">//包含了一些与C标准I/O相关的函数，例如文件操作函数&#x27;fopen()&#x27;和&#x27;fclose()&#x27;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> __STL_BEGIN_NAMESPACE namespace yw_stl&#123;</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __STL_END_NAMESPACE &#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>__STL_BEGIN_NAMESPACE</code> 被定义为 <code>namespace yw_stl&#123;</code>，意味着每当代码中出现 <code>__STL_BEGIN_NAMESPACE</code> 时，它都会被替换为 <code>namespace yw_stl&#123;</code>。</li>
+<li><code>__STL_END_NAMESPACE</code> 被定义为 <code>&#125;</code>，意味着每当代码中出现 <code>__STL_END_NAMESPACE</code> 时，它都会被替换为 <code>&#125;</code>。</li>
+</ul>
+<p>作用是定义命名空间用的。</p>
+<h2 id="2024-4-23"><a href="#2024-4-23" class="headerlink" title="2024.4.23"></a>2024.4.23</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">_T1</span>,<span class="keyword">class</span> <span class="title class_">_T2</span>&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="type">void</span> _Construct(_T1* __p,<span class="type">const</span> _T2 __value)&#123;</span><br><span class="line"><span class="keyword">new</span>((<span class="type">void</span>*)__p) _T1(__value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之前提到过，一种特殊的new函数，placement new 在给定内存上创建对象，_T1(__value)是构造函数</p>
+<p>_T1是一个类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">__type_traits</span> &#123;</span><br><span class="line">    <span class="keyword">typedef</span> __true_type this_dummy_member_must_be_first;<span class="comment">//无实际作用，强调放在第一位的占位符</span></span><br><span class="line">    <span class="keyword">typedef</span> __false_type has_trivial_default_constructor;<span class="comment">//有平凡构造函数</span></span><br><span class="line">    <span class="keyword">typedef</span> __false_type has_trivial_copy_constructor;<span class="comment">//有平凡拷贝构造函数</span></span><br><span class="line">    <span class="keyword">typedef</span> __false_type has_trivial_assignment_operator;<span class="comment">//有平凡的赋值操作符</span></span><br><span class="line">    <span class="keyword">typedef</span> __false_type has_trivial_destructor;<span class="comment">//有平凡的析构函数</span></span><br><span class="line">    <span class="keyword">typedef</span> __false_type is_POD_type;<span class="comment">//是POD类型</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这个与视频课里的对象释放时的方式有关，如果是“无关痛痒”的函数，那就不做任何事情就好了。</p>
+<p>POD：Plain Old Data，简单的数据类型（整数、浮点数、指针等）。</p>
+<h1 id="跟着卡码网写容器"><a href="#跟着卡码网写容器" class="headerlink" title="跟着卡码网写容器"></a>跟着卡码网写容器</h1><h2 id="2024-9-2"><a href="#2024-9-2" class="headerlink" title="2024.9.2"></a>2024.9.2</h2><p>list部分</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	std::list&lt;<span class="type">int</span>&gt; myList = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span> &#125;;</span><br><span class="line">	myList.<span class="built_in">push_front</span>(<span class="number">1</span>);<span class="comment">//头加</span></span><br><span class="line">	myList.<span class="built_in">push_back</span>(<span class="number">2</span>);<span class="comment">//尾加</span></span><br><span class="line">	std::cout &lt;&lt; myList.<span class="built_in">front</span>() &lt;&lt; std::endl;<span class="comment">//访问第一个元素</span></span><br><span class="line">	std::cout &lt;&lt; myList.<span class="built_in">back</span>() &lt;&lt; std::endl;<span class="comment">//访问最后一个元素</span></span><br><span class="line">	<span class="comment">//迭代器遍历方式</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> it = myList.<span class="built_in">begin</span>(); it != myList.<span class="built_in">end</span>(); ++it) &#123;<span class="comment">//auto 这里是 std::list&lt;int&gt;::iterator</span></span><br><span class="line">		std::cout &lt;&lt; *it &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	std::cout &lt;&lt; std::endl;</span><br><span class="line">	myList.<span class="built_in">pop_front</span>();<span class="comment">//头减</span></span><br><span class="line">	myList.<span class="built_in">pop_back</span>();<span class="comment">//尾减</span></span><br><span class="line">	<span class="comment">//范围基for循环</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span>&amp; element : myList) &#123;</span><br><span class="line">		std::cout &lt;&lt; element &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	std::cout &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于list的图解</p>
+
+
+<p>蓝色矩形：堆内存</p>
+<p>红色矩形：栈内存</p>
+<h2 id="2024-9-4"><a href="#2024-9-4" class="headerlink" title="2024.9.4"></a>2024.9.4</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	std::deque&lt;<span class="type">int</span>&gt; myDeque = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span> &#125;;</span><br><span class="line">	myDeque.<span class="built_in">push_front</span>(<span class="number">1</span>);<span class="comment">//头加</span></span><br><span class="line">	myDeque.<span class="built_in">push_back</span>(<span class="number">2</span>);<span class="comment">//尾加</span></span><br><span class="line">	std::cout &lt;&lt; myDeque.<span class="built_in">front</span>() &lt;&lt; std::endl;<span class="comment">//访问第一个元素</span></span><br><span class="line">	std::cout &lt;&lt; myDeque.<span class="built_in">back</span>() &lt;&lt; std::endl;<span class="comment">//访问最后一个元素</span></span><br><span class="line">	<span class="comment">//迭代器遍历方式</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> it = myDeque.<span class="built_in">begin</span>(); it != myDeque.<span class="built_in">end</span>(); ++it) &#123;</span><br><span class="line">		std::cout &lt;&lt; *it &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	std::cout &lt;&lt; std::endl;</span><br><span class="line">	myDeque.<span class="built_in">pop_front</span>();<span class="comment">//头减</span></span><br><span class="line">	myDeque.<span class="built_in">pop_back</span>();<span class="comment">//尾减</span></span><br><span class="line">	<span class="comment">//范围基for循环</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span>&amp; element : myDeque) &#123;</span><br><span class="line">		std::cout &lt;&lt; element &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	std::cout &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>链表能做的，deque也能做</p>
+
+
+<ul>
+<li>无论是<code>push_front</code>还是<code>push_back</code>, 都需要判断当前数组是否已满, 已满的话将其扩容为原容量的2倍, 将原来的数组元素复制到新的数组中。</li>
+<li><code>push_front</code>需要将<code>frontIndex</code>自减后在<code>frontIndex</code>位置插入, <code>frontIndex</code>自减后需要加上<code>capacity</code>后对<code>capacity</code>取模, 这使得如果<code>frontIndex</code>为负, <code>frontIndex</code>将指向从数组末尾</li>
+<li><code>push_back</code>直接在<code>backIndex</code>位置插入, 然后将<code>backIndex</code>自增, <code>backIndex</code>自增后需要对<code>capacity</code>取模, 这使得如果<code>backIndex</code>越界, <code>backIndex</code>将指向从数组开始的位置</li>
+</ul>
+<p>这里的deque并不是stl实现的deque，stl实现的deque是靠多个分段数组连接制成，</p>
+<p>这里的deqeu只用一个数组，扩充时是像vector翻倍复制一样，我觉得不好。</p>
+<p>但是也有可以学到的东西</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//打印deque中的元素</span><br><span class="line">void printElements()const &#123;</span><br><span class="line">    size_t index = frontIndex;</span><br><span class="line">    for (size_t i = 0; i &lt; size; ++i) &#123;</span><br><span class="line">        std::cout &lt;&lt; elements[index] &lt;&lt; &quot; &quot;;</span><br><span class="line">        index = (index + 1) % capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    //这里注意，下面注释掉的循环输出是有问题的，当容器满了时就会直接跳出循环</span><br><span class="line">    //因为满的时候两个索引都指向一个位置</span><br><span class="line">    //while(index!=backIndex)&#123;</span><br><span class="line">    //    std::cout&lt;&lt;elements[index]&lt;&lt;&quot; &quot;;</span><br><span class="line">    //    index=(index+1)%capacity;</span><br><span class="line">    //&#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2024-9-7"><a href="#2024-9-7" class="headerlink" title="2024.9.7"></a>2024.9.7</h2><p>HashTable</p>
+
+
+<h2 id="2024-9-8"><a href="#2024-9-8" class="headerlink" title="2024.9.8"></a>2024.9.8</h2><p>红黑树：自动平衡二叉树，节点附加一种属性表示节点颜色，非红即黑。</p>
+<p>有如下特性：</p>
+<ul>
+<li>节点颜色：非红即黑</li>
+<li>根节点颜色：根节点是黑色的</li>
+<li>叶子节点（NIL节点）颜色：所有叶子节点（NIL节点）都是黑色</li>
+<li>相邻节点颜色：如果一个节点是红的，则它的两个子节点都是黑的</li>
+<li>路径黑高度相等：从任意节点到其每个叶子节点的简单路径上，黑色节点数量相同。</li>
+</ul>
+<p>这些特性确保了红黑树的关键性质，如再最坏的情况下查找、插入和删除操作时间复杂度都是O（log n）</p>
+<p>红黑树工作流程：</p>
+<ol>
+<li><p><strong>插入新节点</strong></p>
+<ul>
+<li>将新节点插入到红黑树中，新节点颜色初始化为红色。</li>
+</ul>
+</li>
+<li><p><strong>检查红黑树性质</strong>：</p>
+<ol>
+<li>如果新插入的节点是根节点，仅将其颜色改为黑色即可满足所有性质。</li>
+<li>如果新节点的父节点是黑色，不违反红黑树的性质，不需要做额外的操作。</li>
+<li>如果新节点的父节点是红色，就需要进行一些调整来修复树的特性，因为这违反了性质：红色节点的子节点必须是黑色。</li>
+</ol>
+</li>
+<li><p><strong>调整红黑树</strong>：如果新节点的父节点是红色的，有以下几种情况需要处理：</p>
+<ol>
+<li>父节点是爷爷节点的左孩子<ol>
+<li>叔叔节点为红色<ol>
+<li>更改叔叔节点和父节点为黑色</li>
+<li>将爷爷节点设置为红色</li>
+<li>以爷爷节点为目标继续判断是否需要调整</li>
+</ol>
+</li>
+<li>叔叔节点为黑色或者不存在<ol>
+<li>如果新节点是父节点的右孩子，将操作的目标节点变为其父亲，并左旋</li>
+<li>将操作节点（可能因为上一步的右旋，操作节点发生了变化）设为黑色，爷爷节点设为红色</li>
+<li>右旋爷爷节点</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>父亲节点是爷爷节点的右孩子<ol>
+<li>叔叔节点为红色<ol>
+<li>更改叔叔节点和父节点为黑色</li>
+<li>将爷爷节点设为红色</li>
+<li>以爷爷节点为目标继续判断是否需要调整</li>
+</ol>
+</li>
+<li>叔叔节点为黑色或者不存在<ol>
+<li>如果新节点是父节点的左孩子，将操作目标节点变为其父亲，并右旋</li>
+<li>将操作节点（可能因为上一步的右旋，操作节点发生了变化）设为褐色，爷爷节点设为红色</li>
+<li>左旋爷爷节点</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>能需要向上递归地调整，直到根节点，或者直到不再违反红黑树的性质为止。</p>
+<p>旋转操作解释：</p>
+<ul>
+<li><strong>左旋</strong>：节点x的右孩子y变成x的父节点，x变成了y的左孩子。如果y有一个左孩子，它会变成x的右孩子。</li>
+<li><strong>右旋</strong>：与左线相反，节点x的左节点y变成x的父节点，x变成了y的右孩子。如果y有一个右孩子，它会变成x的左孩子。</li>
+</ul>
+<p>每次插入的时间复杂度为O(log n),因为红黑树的高度保持在log2(n)以内。</p>
+<p>图示说明如下操作的插入过程:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RedBlackTree&lt;<span class="type">int</span>&gt; mySet;</span><br><span class="line"><span class="comment">// 插入元素</span></span><br><span class="line">mySet.<span class="built_in">insert</span>(<span class="number">42</span>);</span><br><span class="line">mySet.<span class="built_in">insert</span>(<span class="number">63</span>);</span><br><span class="line">mySet.<span class="built_in">insert</span>(<span class="number">10</span>);</span><br><span class="line">mySet.<span class="built_in">insert</span>(<span class="number">4</span>);</span><br><span class="line">mySet.<span class="built_in">insert</span>(<span class="number">30</span>);</span><br><span class="line">mySet.<span class="built_in">insert</span>(<span class="number">36</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li>插入42(红)为根节点, 将其调整为黑色</li>
+<li>插入21(红)为42(黑)的左孩子, 无需调整</li>
+<li>插入63(红)为42(黑)的右孩子, 无需调整</li>
+<li>插入10(红)为21(红)的左孩子, 调整如下:<ol>
+<li>由于父亲和叔叔也是红色, 直接将父亲和叔叔变为黑色</li>
+<li>将爷爷42变为红色</li>
+<li>重新将根节点42变为黑色</li>
+</ol>
+</li>
+<li>插入4(红)为10(红)的左孩子, 调整如下:<ol>
+<li>由于其没有叔叔节点且父节点为红, 将父节点变黑, 爷爷节点变红</li>
+<li>右旋爷爷节点</li>
+</ol>
+</li>
+<li>插入30(红)为21(红)的右孩子, 调整如下:<ol>
+<li>父节点和叔叔节点为红, 直接将其边黑</li>
+<li>爷爷10节点变红</li>
+</ol>
+</li>
+<li>插入36(红)为30(红)的右孩子, 调整如下:<ol>
+<li>由于其没有叔叔节点且父节点为红, 将父节点变黑, 爷爷节点变红</li>
+<li>左旋爷爷节点</li>
+</ol>
+</li>
+</ol>
+<h2 id="2024-9-11"><a href="#2024-9-11" class="headerlink" title="2024.9.11"></a>2024.9.11</h2><p>set</p>
+<p>底层用红黑树实现，算是红黑树的一层封装</p>
+<p>特性：</p>
+<ul>
+<li><p>唯一性：std::set中不允许存储重复的元素，每个元素都是唯一的。插入重复元素的操作会被忽略。</p>
+</li>
+<li><p>有序性：std::set中的元素是按照升序进行排序的。这种排序是通过红黑树的自平衡性质实现的，保证了插入、删除等操作的高效性。</p>
+</li>
+<li><p>插入元素：使用insert成员函数可以将元素插入到集合中，如果元素已经存在，则插入会呗忽略</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	std::set&lt;<span class="type">int</span>&gt; mySet;</span><br><span class="line">	mySet.<span class="built_in">insert</span>(<span class="number">42</span>);</span><br><span class="line">	mySet.<span class="built_in">insert</span>(<span class="number">21</span>);</span><br><span class="line">	mySet.<span class="built_in">insert</span>(<span class="number">63</span>);</span><br><span class="line">	mySet.<span class="built_in">insert</span>(<span class="number">21</span>);</span><br><span class="line"></span><br><span class="line">	mySet.<span class="built_in">erase</span>(<span class="number">63</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> it = mySet.<span class="built_in">find</span>(<span class="number">42</span>);</span><br><span class="line">	<span class="keyword">if</span> (it != mySet.<span class="built_in">end</span>()) &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">const</span> <span class="type">int</span>&amp; element : mySet) &#123;</span><br><span class="line">		std::cout &lt;&lt; element &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	std::cout &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>map</p>
+<p>特性：</p>
+<ul>
+<li>键值对存储：std::map通过键值对的形式存储数据，其中每个键都是唯一的，并且与每一个值相关联。</li>
+<li>自动排序：std::map内部使用一种平衡二叉搜索树（通常是红黑树）来存储元素，这使得元素根据键值自动排序。</li>
+<li>元素唯一性：在std::map中，键必须是唯一的。如果尝试插入一个已经存在的键，插入操作将是失败。</li>
+<li>直接访问：可以使用键值直接访问std::map中的元素，这提供了高效的查找能力。</li>
+<li>灵活的元素操作：std::map提供了丰富的元素操作，包括插入、删除、查找等。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	std::map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; myMap;</span><br><span class="line"></span><br><span class="line">	myMap.<span class="built_in">insert</span>(&#123; <span class="number">1</span>,<span class="number">100</span> &#125;);</span><br><span class="line">	myMap[<span class="number">2</span>] = <span class="number">200</span>;<span class="comment">//使用下标操作符直接插入或修改</span></span><br><span class="line">	myMap.<span class="built_in">insert</span>(&#123; <span class="number">3</span>,<span class="number">300</span> &#125;);</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Element with key 2:&quot;</span> &lt;&lt; myMap[<span class="number">2</span>] &lt;&lt; std::endl;</span><br><span class="line">	<span class="comment">//迭代查询</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Iterating over elements:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair : myMap) &#123;</span><br><span class="line">		std::cout &lt;&lt; pair.first &lt;&lt; <span class="string">&quot;=&gt;&quot;</span> &lt;&lt; pair.second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//查找元素</span></span><br><span class="line">	<span class="keyword">auto</span> search = myMap.<span class="built_in">find</span>(<span class="number">2</span>);<span class="comment">//查找键为2的元素</span></span><br><span class="line">	<span class="keyword">if</span> (search != myMap.<span class="built_in">end</span>()) &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;Found element with key 2:&quot;</span> &lt;&lt; search-&gt;second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;Element with key 2 not found.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//删除元素</span></span><br><span class="line">	myMap.<span class="built_in">erase</span>(<span class="number">2</span>);<span class="comment">//删除键为2的元素</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Element with key 2 erased.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//再次遍历，查看删除效果</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Iterator over elements ahter deletion:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair : myMap) &#123;</span><br><span class="line">		std::cout &lt;&lt; pair.first &lt;&lt; <span class="string">&quot;=&gt;&quot;</span> &lt;&lt; pair.second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2024-9-13"><a href="#2024-9-13" class="headerlink" title="2024.9.13"></a>2024.9.13</h2><p>unordered_map的性能</p>
+<ol>
+<li>访问性能 在理想情况下，访问元素（增删查）的时间复杂度为O（1）。但是，如果发生哈希冲突，这些操作的性能可能会降至O（n），其中n是同一个哈希桶中元素的数量。</li>
+<li>冲突解决，unordered_map通过链表（活其他数据结构，具体取决于实现）解决哈希冲突，当多个元素被映射到同一个哈希桶时，他们将被存储在一个链表中。</li>
+<li>加载因子和重哈希，加载因子是存储在哈希表中的元素数量与哈希桶数量的比率。当加载因子超过某个阈值时（通常是1），unordered_map将进行重哈希操作，以增加哈希桶的数量并重新分配元素，以保持操作的高效性。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unordered_map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	std::unordered_map&lt;std::string, <span class="type">int</span>&gt; wordCount;</span><br><span class="line">	<span class="comment">//插入元素</span></span><br><span class="line">	wordCount[<span class="string">&quot;apple&quot;</span>] = <span class="number">1</span>;<span class="comment">//方法一：使用下标运算符超乳或修改元素</span></span><br><span class="line">	wordCount.<span class="built_in">insert</span>(&#123; <span class="string">&quot;banana&quot;</span>,<span class="number">2</span> &#125;);<span class="comment">//方法二：使用哦个insert函数插入元素</span></span><br><span class="line">	wordCount.<span class="built_in">emplace</span>(<span class="string">&quot;cherry&quot;</span>, <span class="number">3</span>);<span class="comment">//方法三：使用emplace直接构造元素，避免临时对象的构造，效率更高</span></span><br><span class="line">	<span class="comment">//访问元素</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;apple count:&quot;</span> &lt;&lt; wordCount[<span class="string">&quot;apple&quot;</span>] &lt;&lt; std::endl;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;banana count:&quot;</span> &lt;&lt; wordCount.<span class="built_in">at</span>(<span class="string">&quot;banana&quot;</span>) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//检查元素是否存在</span></span><br><span class="line">	<span class="keyword">if</span> (wordCount.<span class="built_in">find</span>(<span class="string">&quot;cherry&quot;</span>) != wordCount.<span class="built_in">end</span>()) &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;chreey found&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//更新元素</span></span><br><span class="line">	wordCount[<span class="string">&quot;apple&quot;</span>] = <span class="number">5</span>;<span class="comment">//更新apple的计数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//删除元素</span></span><br><span class="line">	wordCount.<span class="built_in">erase</span>(<span class="string">&quot;banana&quot;</span>);<span class="comment">//删除键为“banana”的元素</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//遍历unordered_map</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair : wordCount) &#123;</span><br><span class="line">		std::cout &lt;&lt; pair.first &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; pair.second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//获取unordered_map的大小</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Size of unordered_map:&quot;</span> &lt;&lt; wordCount.<span class="built_in">size</span>() &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>multimap</p>
+<p>特性：键的多重性：与std::map不同，std::multimap允许两个或多个元素拥有相同的键。这使得multimap非常适合于那些需要根据键将多个值分组的场景。</p>
+<p>元素的有序性：std::multimap中的元素根据键自动排序。默认情况下，它使用std::less来比较键，这意味着元素会按照键的升序排序。也可自定义比较函数，实现不同的排序逻辑。</p>
+<p>基于红黑树实现：带哦是STL实现使用平衡二叉搜索树（如红黑树）来实现multimap，这确保了即使在最坏的情况下，大部分操作（如插入、查找和删除）的时间复杂度也是对数的。</p>
+<p>不支持直接修改键：由于multimap中的元素是根据键排序的，直接修改键可能会破坏容器的内部顺序。如果需要修改键，通常的做法是删除旧元素并插入一个新元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	std::multimap&lt;<span class="type">int</span>, std::string&gt; mm;</span><br><span class="line"></span><br><span class="line">	mm.<span class="built_in">insert</span>(std::<span class="built_in">make_pair</span>(<span class="number">1</span>, <span class="string">&quot;Apple&quot;</span>));</span><br><span class="line">	mm.<span class="built_in">insert</span>(std::<span class="built_in">make_pair</span>(<span class="number">1</span>, <span class="string">&quot;Avocado&quot;</span>));</span><br><span class="line">	mm.<span class="built_in">insert</span>(std::<span class="built_in">make_pair</span>(<span class="number">2</span>, <span class="string">&quot;Banana&quot;</span>));</span><br><span class="line">	mm.<span class="built_in">insert</span>(std::<span class="built_in">make_pair</span>(<span class="number">2</span>, <span class="string">&quot;Cherry&quot;</span>));</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Multimap elements:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; element : mm) &#123;</span><br><span class="line">		std::cout &lt;&lt; element.first &lt;&lt; <span class="string">&quot;=&gt;&quot;</span> &lt;&lt; element.second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查找键为1的所有元素</span></span><br><span class="line">	<span class="keyword">auto</span> range = mm.<span class="built_in">equal_range</span>(<span class="number">1</span>);<span class="comment">//获取一个范围，包含所有键为1的元素</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;Elements with key 1:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> it = range.first; it != range.second; ++it) &#123;</span><br><span class="line">		std::cout &lt;&lt; it-&gt;first &lt;&lt; <span class="string">&quot;=&gt;&quot;</span> &lt;&lt; it-&gt;second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//删除键为2的所有元素</span></span><br><span class="line">	mm.<span class="built_in">erase</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//遍历multimap，查看删除操作的结果</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;\nMultimap after erasing key 2:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; element : mm) &#123;</span><br><span class="line">		std::cout &lt;&lt; element.first &lt;&lt; <span class="string">&quot;=&gt;&quot;</span> &lt;&lt; element.second &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2024-9-14"><a href="#2024-9-14" class="headerlink" title="2024.9.14"></a>2024.9.14</h2><p>priority_queue</p>
+<p>堆的工作原理：</p>
+<p>结构特性：堆是一个完全二叉树，这意味着除了最后一层外，每一层都是完全填满的，而最后一层的节点则尽可能地集中在左边。</p>
+<p>堆性质：在一个大根堆中，每个节点的值都大于或等于其子节点的值，根节点的值时堆中最大值。小根堆则相反。</p>
+<p>优先队列中有一个堆一个其他容器（Vetctor、deque、list之类）</p>
+
       
     </div>
 
@@ -565,7 +892,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-24 16:59:00" itemprop="dateModified" datetime="2023-10-24T16:59:00+08:00">2023-10-24</time>
+      <time title="修改时间：2024-09-18 19:25:00" itemprop="dateModified" datetime="2024-09-18T19:25:00+08:00">2024-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -574,10 +901,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/PWN/" itemprop="url" rel="index"><span itemprop="name">PWN</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PWN/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
         </span>
     </span>
 
@@ -661,7 +984,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-27 17:59:46" itemprop="dateModified" datetime="2023-09-27T17:59:46+08:00">2023-09-27</time>
+      <time title="修改时间：2024-09-18 19:24:54" itemprop="dateModified" datetime="2024-09-18T19:24:54+08:00">2024-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -670,10 +993,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/ROP/" itemprop="url" rel="index"><span itemprop="name">ROP</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROP/%E9%AB%98%E7%BA%A7ROP/" itemprop="url" rel="index"><span itemprop="name">高级ROP</span></a>
         </span>
     </span>
 
@@ -757,7 +1076,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-24 19:34:23" itemprop="dateModified" datetime="2023-09-24T19:34:23+08:00">2023-09-24</time>
+      <time title="修改时间：2024-09-18 19:25:27" itemprop="dateModified" datetime="2024-09-18T19:25:27+08:00">2024-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -766,10 +1085,6 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/ROP/" itemprop="url" rel="index"><span itemprop="name">ROP</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROP/%E4%B8%AD%E7%BA%A7ROP/" itemprop="url" rel="index"><span itemprop="name">中级ROP</span></a>
         </span>
     </span>
 
@@ -971,102 +1286,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/yw/684072015/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://yw-by.github.io/yw/4180228739/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="yw-by">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yw__y">
-      <meta itemprop="description" content="每天早起一点，或许我能赶上他们">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yw__y">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/yw/4180228739/" class="post-title-link" itemprop="url">栈迁移原理与应用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-24 19:55:12" itemprop="dateCreated datePublished" datetime="2023-08-24T19:55:12+08:00">2023-08-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-02 20:06:04" itemprop="dateModified" datetime="2023-11-02T20:06:04+08:00">2023-11-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PWN/" itemprop="url" rel="index"><span itemprop="name">PWN</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PWN/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <img src="/yw/4180228739/5.jpg" class>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/yw/4180228739/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
