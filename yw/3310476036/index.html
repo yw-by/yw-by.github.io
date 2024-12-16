@@ -141,7 +141,7 @@
 <meta property="og:image" content="http://yw-by.github.io/yw/3310476036/116.png">
 <meta property="og:image" content="http://yw-by.github.io/yw/3310476036/115.png">
 <meta property="article:published_time" content="2024-11-07T08:24:29.000Z">
-<meta property="article:modified_time" content="2024-11-25T13:12:03.096Z">
+<meta property="article:modified_time" content="2024-12-16T13:12:10.894Z">
 <meta property="article:author" content="yw-by">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yw-by.github.io/yw/3310476036/14.jpg">
@@ -313,7 +313,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-25 21:12:03" itemprop="dateModified" datetime="2024-11-25T21:12:03+08:00">2024-11-25</time>
+      <time title="修改时间：2024-12-16 21:12:10" itemprop="dateModified" datetime="2024-12-16T21:12:10+08:00">2024-12-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -716,7 +716,9 @@
 <p>拼接出来的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">......///http\.....//\config\config_db.php</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">过滤之后应是</span><br><span class="line">....//http\.../\config\config_db.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一次过滤（过滤../)之后应是</span><br><span class="line">....//http\.../\config\config_db.php</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第二次（过滤./）之后</span><br><span class="line">.../http\..\config\config_db.php</span><br></pre></td></tr></table></figure>
 
 <p>在源码里加上了一条echo $dir;</p>
 <p>输出出来的是</p>
@@ -728,7 +730,7 @@
 <p>加</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\</span><br></pre></td></tr></table></figure>
 
-<p>的目的是防止.&#x2F;被过滤后面还有一次&amp;&amp; strpos($dir, ‘.&#x2F;‘) &#x3D;&#x3D;&#x3D; false，</p>
+<p>的目的是防止.&#x2F;被过滤后面还有一次&amp;&amp; strpos($dir, ‘.&#x2F;‘) &#x3D;&#x3D;&#x3D; false，这里没看明白</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\和/没啥区别</span><br></pre></td></tr></table></figure>
 
 <h1 id="第21天：WEB攻防-JavaWeb项目-JWT身份攻击-组件安全-访问控制"><a href="#第21天：WEB攻防-JavaWeb项目-JWT身份攻击-组件安全-访问控制" class="headerlink" title="第21天：WEB攻防-JavaWeb项目&amp;JWT身份攻击&amp;组件安全&amp;访问控制"></a>第21天：WEB攻防-JavaWeb项目&amp;JWT身份攻击&amp;组件安全&amp;访问控制</h1><h2 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h2><p>1、JavaWeb常见安全及代码逻辑</p>
@@ -785,7 +787,7 @@
 <p>fullName</p>
 <img src="/yw/3310476036/67.png" class>
 
-<p>这里fullName时test对应的我们放包之后</p>
+<p>这里fullName是test对应的我们放包之后</p>
 <img src="/yw/3310476036/68.png" class>
 
 <p>再重新抓放，修改test为其他值尝试</p>
@@ -816,7 +818,7 @@
 <img src="/yw/3310476036/77.png" class>
 
 <p>这和之前的一样，双写就能绕</p>
-<p>讲这两个似乎没啥用，后面又实际案例介绍，要考虑实际上的应用，案例没有复现</p>
+<p>讲这两个似乎没啥用，后面有实际案例介绍，要考虑实际上的应用，案例没有复现</p>
 <p>网站上传一般是允许用户上传图片之类的东西，但是它知道有些人攻击者会上传脚本，为防止被攻击，网站将上传图片的目录的可执行权限禁用，此时就需要进行目录穿越，将脚本上传到根目录或者其他的可执行目录</p>
 <p>2、 身份验证</p>
 <img src="/yw/3310476036/78.png" class>
